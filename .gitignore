@@ -50,7 +50,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
-x.slnx
+*.slnx
 *.suo
 *.tmp
 *.user
