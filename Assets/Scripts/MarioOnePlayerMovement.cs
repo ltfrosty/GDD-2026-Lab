@@ -8,6 +8,10 @@ public class MarioOnePlayerMovement : MonoBehaviour
     public float maxSpeed = 20;
     private Rigidbody2D marioBody;
 
+    // make mario jump variables
+    public float upSpeed = 10;
+    private bool onGroundState = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,5 +48,19 @@ public class MarioOnePlayerMovement : MonoBehaviour
         {
             marioBody.linearVelocity = Vector2.zero;
         }
+
+        if (Input.GetKeyDown("space") && onGroundState)
+        {
+            marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+            onGroundState = false;
+        }
+
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+            onGroundState = true;
+    }
+
 }
