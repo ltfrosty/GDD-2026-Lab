@@ -16,6 +16,7 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
+
     // Start is called before the first frame update
     void Start()
     {
