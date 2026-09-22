@@ -37,7 +37,7 @@ public class GoombaOneMovement : MonoBehaviour
         );
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
         {
