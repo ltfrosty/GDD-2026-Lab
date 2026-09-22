@@ -12,6 +12,10 @@ public class MarioOnePlayerMovement : MonoBehaviour
     public float upSpeed = 10;
     private bool onGroundState = true;
 
+    //mario flip variables
+    private SpriteRenderer marioSprite;
+    private bool faceRightState = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,12 +24,24 @@ public class MarioOnePlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         // Find the Rigidbody2D attached to the same Mario GameObject as this script 
         // and store it in marioBody.
+
+        marioSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("a") && faceRightState)
+        {
+            faceRightState = false;
+            marioSprite.flipX = true;
+        }
 
+        if (Input.GetKeyDown("d") && !faceRightState)
+        {
+            faceRightState = true;
+            marioSprite.flipX = false;
+        }
     }
 
     void FixedUpdate()
