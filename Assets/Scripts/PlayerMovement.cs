@@ -24,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject enemies;
 
     public JumpOverGoomba jumpOverGoomba;
+    public GameObject restartButton; // in-game restart button, not game over restart button
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI finalScoreText;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameOverPanel.SetActive(false);
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
@@ -94,11 +98,22 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // collide with goomba -> game over
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Collided with Goomba!");
+            //scoreText.enabled = false; TODO
             Time.timeScale = 0.0f;
+            GameOver();
         }
+    }
+
+    void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        finalScoreText.text = scoreText.text;
+        scoreText.enabled = false;
+        restartButton.SetActive(false);
     }
 
     public void RestartButtonCallback(int input)
@@ -108,6 +123,8 @@ public class PlayerMovement : MonoBehaviour
         ResetGame();
         // resume time
         Time.timeScale = 1.0f;
+        gameOverPanel.SetActive(false);
+
     }
 
     private void ResetGame()
@@ -125,6 +142,10 @@ public class PlayerMovement : MonoBehaviour
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
         }
         jumpOverGoomba.score = 0;
+        scoreText.enabled = true;
+        restartButton.SetActive(true);
 
     }
+
+
 }
