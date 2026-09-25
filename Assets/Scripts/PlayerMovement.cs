@@ -27,21 +27,30 @@ public class PlayerMovement : MonoBehaviour
     public GameObject restartButton; // in-game restart button, not game over restart button
     public GameObject gameOverPanel;
     public TextMeshProUGUI finalScoreText;
-   
+    public Animator marioAnimator;
+    public AudioSource marioAudio;
+    public AudioClip marioDeath;
+    public float deathImpulse = 15;
+
+    // state
+    [System.NonSerialized]
+    public bool alive = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        gameOverPanel.SetActive(false);
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
+        gameOverPanel.SetActive(false);
+
         marioBody = GetComponent<Rigidbody2D>();
         // "GetComponent<Rigidbody2D>() searches the GameObject this script is attached to, finds the
         // you then component of type Rigidbody2D on it, and returns a reference to it, which store
         // in the marioBody variable. Without that line, marioBody would just be null forever, even if the
         // GameObject has a Rigidbody2D sitting right there in the Inspector — Unity wouldn't connect them for you"
-
         marioSprite = GetComponent<SpriteRenderer>();
+        marioAnimator.SetBool("onGround", onGroundState);
 
     }
 
@@ -54,13 +63,23 @@ public class PlayerMovement : MonoBehaviour
         {
             faceRightState = false;
             marioSprite.flipX = true;
+            if (marioBody.linearVelocity.x > 0.1f)
+            {
+                marioAnimator.SetTrigger("onSkid");
+            }
         }
 
         if (Input.GetKeyDown("d") && !faceRightState)
         {
             faceRightState = true;
             marioSprite.flipX = false;
+            if (marioBody.linearVelocity.x < -0.1f)
+            {
+                marioAnimator.SetTrigger("onSkid");
+            }
         }
+
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
 
     }
 
@@ -87,13 +106,20 @@ public class PlayerMovement : MonoBehaviour
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
+            // update animator state
+            marioAnimator.SetBool("onGround", onGroundState);
         }
 
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground")) onGroundState = true;
+        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+        {
+            onGroundState = true;
+            // update animator state
+            marioAnimator.SetBool("onGround", onGroundState);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -102,18 +128,33 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Collided with Goomba!");
-            //scoreText.enabled = false; TODO
-            Time.timeScale = 0.0f;
-            GameOver();
+
+            // play death animation
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
+
+            //Time.timeScale = 0.0f;
+            //GameOver();
         }
     }
+
 
     void GameOver()
     {
         gameOverPanel.SetActive(true);
         finalScoreText.text = scoreText.text;
-        scoreText.enabled = false;
-        restartButton.SetActive(false);
+
+        scoreText.enabled = false;          // hide score text in gameplay scene
+        restartButton.SetActive(false);     // hide score text in gameplay scene
+    }
+
+    void GameOverScene()
+    {
+        // stop time
+        Time.timeScale = 0.0f;
+        // set gameover scene
+        GameOver();
     }
 
     public void RestartButtonCallback(int input)
@@ -141,11 +182,28 @@ public class PlayerMovement : MonoBehaviour
         {
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
         }
+
         jumpOverGoomba.score = 0;
-        scoreText.enabled = true;
-        restartButton.SetActive(true);
+        scoreText.enabled = true;           // show again score text in gameplay scene
+        restartButton.SetActive(true);      // show again restart button in gameplay scene
+
+        // reset animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
 
     }
 
+    void PlayJumpSound()
+    {
+        // play jump sound
+        marioAudio.PlayOneShot(marioAudio.clip);
+    }
+
+    void PlayDeathImpulse()
+    {
+        marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+   
 
 }
