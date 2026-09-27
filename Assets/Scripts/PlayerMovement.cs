@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioClip marioDeath;
     public float deathImpulse = 15;
+    public Transform gameCamera;
 
     // state
     [System.NonSerialized]
@@ -196,6 +197,9 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
 
+        // reset camera position
+        gameCamera.position = new Vector3(0, 0, -10);
+
     }
 
     void PlayJumpSound()
@@ -209,6 +213,6 @@ public class PlayerMovement : MonoBehaviour
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
 
-   
+
 
 }
