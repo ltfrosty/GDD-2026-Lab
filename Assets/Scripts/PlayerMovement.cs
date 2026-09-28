@@ -58,29 +58,32 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // "We do not implement the flipping of Sprite under FixedUpdate since it has nothing to do with the Physics Engine"
-        // toggle state
-        if (Input.GetKeyDown("a") && faceRightState)
+        if (alive) // stop the italian prick from flipping if he's dead
         {
-            faceRightState = false;
-            marioSprite.flipX = true;
-            if (marioBody.linearVelocity.x > 0.1f)
+            // "We do not implement the flipping of Sprite under FixedUpdate since it has nothing to do with the Physics Engine"
+            // toggle state
+            if (Input.GetKeyDown("a") && faceRightState)
             {
-                marioAnimator.SetTrigger("onSkid");
+                faceRightState = false;
+                marioSprite.flipX = true;
+                if (marioBody.linearVelocity.x > 0.1f)
+                {
+                    marioAnimator.SetTrigger("onSkid");
+                }
             }
-        }
 
-        if (Input.GetKeyDown("d") && !faceRightState)
-        {
-            faceRightState = true;
-            marioSprite.flipX = false;
-            if (marioBody.linearVelocity.x < -0.1f)
+            if (Input.GetKeyDown("d") && !faceRightState)
             {
-                marioAnimator.SetTrigger("onSkid");
+                faceRightState = true;
+                marioSprite.flipX = false;
+                if (marioBody.linearVelocity.x < -0.1f)
+                {
+                    marioAnimator.SetTrigger("onSkid");
+                }
             }
-        }
 
-        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
+            marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
+        }
 
     }
 
