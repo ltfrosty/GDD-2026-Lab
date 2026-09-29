@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3083112974812828515}
   - component: {fileID: 8272351114160014900}
   - component: {fileID: 1238257894619964275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 4966172408521960655}
   - component: {fileID: 821943177695978602}
   - component: {fileID: 247843135397620465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5930736325641021607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Tall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5072315482653210412}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 123389164626243234}
   - component: {fileID: 4924390246244715070}
   - component: {fileID: 1277838821850021832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

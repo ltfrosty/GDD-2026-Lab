@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8962157297850582902}
   - component: {fileID: 5447725934923198016}
   - component: {fileID: 7427609410574665520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3315374702560185751}
   - component: {fileID: 7755642485023170553}
   - component: {fileID: 6243753078558978929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215207840636973336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe-Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8707546381079500785}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

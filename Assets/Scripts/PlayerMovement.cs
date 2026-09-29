@@ -121,9 +121,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
             // update animator state
@@ -143,9 +145,8 @@ public class PlayerMovement : MonoBehaviour
             marioAudio.PlayOneShot(marioDeath);
             alive = false;
 
-            //Time.timeScale = 0.0f;
-            //GameOver();
         }
+        
     }
 
 
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     private void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-5.33f, -4.69f, 0.0f);
+        marioBody.transform.position = new Vector3(-10.0f, -4.69f, 0.0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
