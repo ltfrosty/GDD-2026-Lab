@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
 
     public GameObject enemies;
+    public GameObject questionBoxes;
     public JumpOverGoomba jumpOverGoomba;
    
     public Transform gameCamera;
@@ -197,6 +198,16 @@ public class PlayerMovement : MonoBehaviour
         foreach (Transform eachChild in enemies.transform)
         {
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
+        }
+
+        // reset question boxes
+        foreach (Transform eachChild in questionBoxes.transform)
+        {
+            QuestionBoxBounce box = eachChild.GetComponentInChildren<QuestionBoxBounce>();
+            if (box != null)
+            {
+                box.ResetBox();
+            }
         }
 
         jumpOverGoomba.score = 0;

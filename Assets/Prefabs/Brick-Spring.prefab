@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3183835990040559190}
   - component: {fileID: 347186106792284734}
   m_Layer: 7
-  m_Name: Question-Box-Spring
+  m_Name: Brick-Spring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,11 +73,10 @@ GameObject:
   - component: {fileID: 1589833744661951092}
   - component: {fileID: 4192047284445949303}
   - component: {fileID: 6937707273545198831}
-  - component: {fileID: 8796563113763489890}
   - component: {fileID: 3628631063129295388}
-  - component: {fileID: 4783558175711835952}
+  - component: {fileID: 194933058347350041}
   m_Layer: 7
-  m_Name: Question-Box
+  m_Name: Brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +146,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300160, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
+  m_Sprite: {fileID: 21300026, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -251,25 +250,6 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 1
   m_Frequency: 5
---- !u!114 &8796563113763489890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6969555652208123327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beaa795757ecaaf4a85a798803ac68c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxBounce
-  bounceDisplacement: 0.3
-  maxBounceTime: 1
-  coinPrefab: {fileID: 2327950795377567435, guid: 57967156f0c21ab4286af0dbfa1235fb, type: 3}
-  boxAudio: {fileID: 3628631063129295388}
-  coinSound: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
-  boxSprite: {fileID: 1425222702243384349}
-  boxAnimator: {fileID: 4783558175711835952}
 --- !u!82 &3628631063129295388
 AudioSource:
   m_ObjectHideFlags: 0
@@ -367,25 +347,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &4783558175711835952
-Animator:
-  serializedVersion: 7
+--- !u!114 &194933058347350041
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969555652208123327}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 350f2f84a0892d942953b09155383d85, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a64906b1dfbe134582a5917a450ecfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickBounce
+  bounceDisplacement: 0.3
+  maxBounceTime: 1.5
+  spawnsCoin: 0
+  coinPrefab: {fileID: 0}
