@@ -11,8 +11,6 @@ public class QuestionBoxBounce : MonoBehaviour
     public float maxBounceTime = 1.5f;
 
     public GameObject coinPrefab;
-    public AudioSource boxAudio;
-    public AudioClip coinSound;
 
     public SpriteRenderer boxSprite;
     public Animator boxAnimator;
@@ -26,7 +24,6 @@ public class QuestionBoxBounce : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + Vector3.up * 0.5f;
         Instantiate(coinPrefab, spawnPos, Quaternion.identity);
-        boxAudio.PlayOneShot(coinSound);
     }
     
 

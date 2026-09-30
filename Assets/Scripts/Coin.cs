@@ -3,25 +3,17 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public AudioClip collectSound;
-    private bool collected = false;
 
-    public void OnPopFinished()
+    // called via an animation event on the frame where the coin visually lands inside the box
+    public void OnLanded()
     {
-        if (!collected)
-        {
-            Destroy(gameObject);
-        }
+        AudioSource.PlayClipAtPoint(collectSound, transform.position);
+        // TODO later: increase score here once scoring is wired up
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    // called via an animation event on the final frame of the clip (or can be the same frame as OnLanded, or shortly after)
+    public void OnPopFinished()
     {
-        if (collected) return;
-        if (!other.gameObject.CompareTag("Player")) return;
-
-        collected = true;
-        AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        // TODO: increase score here once scoring is wired up
-
         Destroy(gameObject);
     }
 }
