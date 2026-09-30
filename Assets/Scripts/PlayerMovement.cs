@@ -11,26 +11,30 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10;
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
-    private Rigidbody2D marioBody;
-    private SpriteRenderer marioSprite;
+    // Mario movement variables
+    public float speed = 100;
+    public float maxSpeed = 15;
+    public float upSpeed = 50;
+    public float deathImpulse = 40;
     private bool faceRightState = true;
-
     private bool onGroundState = true;
 
-    public TextMeshProUGUI scoreText;
-    public GameObject enemies;
-
-    public JumpOverGoomba jumpOverGoomba;
-    public GameObject restartButton; // in-game restart button, not game over restart button
-    public GameObject gameOverPanel;
-    public TextMeshProUGUI finalScoreText;
+    // Mario Unity things
+    private Rigidbody2D marioBody;
+    private SpriteRenderer marioSprite;
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioClip marioDeath;
-    public float deathImpulse = 15;
+
+    // UI elements
+    public TextMeshProUGUI scoreText;
+    public GameObject restartButton; // in-game restart button, not game over restart button
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI finalScoreText;
+
+    public GameObject enemies;
+    public JumpOverGoomba jumpOverGoomba;
+   
     public Transform gameCamera;
 
     // state
@@ -90,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called 50 times a second
     void FixedUpdate()
     {
-
         if (alive)
         {
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
@@ -100,7 +103,10 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 movement = new Vector2(moveHorizontal, 0);
                 // check if it doesn't go beyond maxSpeed
                 if (marioBody.linearVelocity.magnitude < maxSpeed)
+                {
                     marioBody.AddForce(movement * speed);
+                }
+                    
             }
 
             // stop
@@ -181,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
     private void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-10.0f, -4.69f, 0.0f);
+        marioBody.transform.position = new Vector3(-10.0f, -4.69f, 0.0f);   // hardcoded, same as Mario's starting transform in Inspector to prevent shifting camera when resetting game
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
