@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject enemies;
     public GameObject questionBoxes;
     public JumpOverGoomba jumpOverGoomba;
-   
+
     public Transform gameCamera;
 
     // state
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     marioBody.AddForce(movement * speed);
                 }
-                    
+
             }
 
             // stop
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetBool("onGround", onGroundState);
             }
         }
-        
+
 
     }
 
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             alive = false;
 
         }
-        
+
     }
 
 
