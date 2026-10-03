@@ -176,7 +176,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestartButtonCallback(int input)
     {
-        Debug.Log("Restart!");
         // reset everything
         ResetGame();
         // resume time
