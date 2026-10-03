@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
+        // Debug.Log(other.gameObject.name);
     }
 
     void Start()
@@ -40,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
     // "Update() — runs once per rendered frame. Frame rate isn't constant (60fps one moment, 40fps if the game lags).
     //  FixedUpdate() — runs at a fixed, steady rate no matter what(always every 0.02 seconds, like a metronome).
     //  The one-sentence rule to remember: if it moves a Rigidbody, put it in FixedUpdate(). If it reads keyboard/mouse input, put it in Update()"
-        void FixedUpdate()
+    void FixedUpdate()
     {
         if (Mathf.Abs(enemyBody.position.x - originalX) < maxOffset)
         {// move goomba
@@ -55,4 +55,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public void GameRestart()
+    {
+        transform.localPosition = startPosition;
+        originalX = transform.position.x;
+        moveRight = -1;
+        ComputeVelocity();
+    }
 }
