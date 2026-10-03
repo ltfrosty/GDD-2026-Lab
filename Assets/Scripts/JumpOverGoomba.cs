@@ -6,7 +6,6 @@ using TMPro;
 public class JumpOverGoomba : MonoBehaviour
 {
     public Transform enemyLocation;
-    // public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
     [System.NonSerialized]
@@ -58,9 +57,6 @@ public class JumpOverGoomba : MonoBehaviour
                 countScoreState = false;
                 gameManager.IncreaseScore(1);
 
-                //score++;
-                //scoreText.text = "Score: " + score.ToString();
-                //Debug.Log(score);
             }
         }
     }

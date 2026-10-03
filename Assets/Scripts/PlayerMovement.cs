@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-// using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-// using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,15 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioClip marioDeath;
 
-    // UI elements
-    // public TextMeshProUGUI scoreText;
-    // public GameObject restartButton; // in-game restart button, not game over restart button
-    // public GameObject gameOverPanel;
-    // public TextMeshProUGUI finalScoreText;
-
     public GameObject enemies;
     public GameObject questionBoxes;
-    //public JumpOverGoomba jumpOverGoomba;
 
     public Transform gameCamera;
     public GameManager gameManager;
@@ -152,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     void OnCollisionEnter2D(Collision2D col)
     {
-
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
@@ -168,8 +158,6 @@ public class PlayerMovement : MonoBehaviour
             // collide with goomba -> game over
             if (other.gameObject.CompareTag("Enemy"))
             {
-                // Debug.Log("Collided with Goomba!");
-
                 // play death animation
                 marioAnimator.Play("mario-die");
                 marioAudio.PlayOneShot(marioDeath);
@@ -189,79 +177,12 @@ public class PlayerMovement : MonoBehaviour
         // let physics actually run for a moment so the impulse visibly plays out
 
         yield return new WaitForSecondsRealtime(1.2f);
-        //Frame 1: coroutine starts, hits yield return, control returns to Unity.
-        //Frames 2 through ~36(at 60fps over 0.6s): Unity keeps running everything else completely normally — Mario's death animation plays, physics integrates his velocity into visible upward motion, gravity arcs him back down, etc.
-        //After 0.6 real seconds have elapsed, Unity resumes the coroutine right after the yield line, running gameManager.GameOver().
+        // Frame 1: coroutine starts, hits yield return, control returns to Unity.
+        // Frames 2 through ~36(at 60fps over 0.6s): Unity keeps running everything else completely normally — Mario's death animation plays, physics integrates his velocity into visible upward motion, gravity arcs him back down, etc.
+        // After 0.6 real seconds have elapsed, Unity resumes the coroutine right after the yield line, running gameManager.GameOver().
 
         gameManager.GameOver();
     }
-
-
-    //void GameOver()
-    //{
-    //    gameOverPanel.SetActive(true);
-    //    finalScoreText.text = scoreText.text;
-
-    //    scoreText.enabled = false;          // hide score text in gameplay scene
-    //    restartButton.SetActive(false);     // hide score text in gameplay scene
-    //}
-
-    //void GameOverScene()
-    //{
-    //    // stop time
-    //    Time.timeScale = 0.0f;
-    //    // set gameover scene
-    //    GameOver();
-    //}
-
-    //public void RestartButtonCallback(int input)
-    //{
-    //    // reset everything
-    //    ResetGame();
-    //    // resume time
-    //    Time.timeScale = 1.0f;
-    //    gameOverPanel.SetActive(false);
-
-    //}
-
-    //private void ResetGame()
-    //{
-    //    // reset position
-    //    marioBody.transform.position = new Vector3(-10.0f, -4.69f, 0.0f);   // hardcoded, same as Mario's starting transform in Inspector to prevent shifting camera when resetting game
-    //    // reset sprite direction
-    //    faceRightState = true;
-    //    marioSprite.flipX = false;
-    //    // reset score
-    //    scoreText.text = "Score: 0";
-    //    // reset Goomba
-    //    foreach (Transform eachChild in enemies.transform)
-    //    {
-    //        eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-    //    }
-
-
-    //    // reset question boxes
-    //    foreach (Transform eachChild in questionBoxes.transform)
-    //    {
-    //        QuestionBoxBounce box = eachChild.GetComponentInChildren<QuestionBoxBounce>();
-    //        if (box != null)
-    //        {
-    //            box.ResetBox();
-    //        }
-    //    }
-
-    //    jumpOverGoomba.score = 0;
-    //    scoreText.enabled = true;           // show again score text in gameplay scene
-    //    restartButton.SetActive(true);      // show again restart button in gameplay scene
-
-    //    // reset animation
-    //    marioAnimator.SetTrigger("gameRestart");
-    //    alive = true;
-
-    //    // reset camera position
-    //    gameCamera.position = new Vector3(0, 0, -10);
-
-    //}
 
     public void GameRestart()
     {
