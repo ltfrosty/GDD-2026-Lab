@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer marioSprite;
     public Animator marioAnimator;
     public AudioSource marioAudio;
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
+    // public AudioClip marioDeath;
 
     public GameObject enemies;
     public GameObject questionBoxes;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // state
     [System.NonSerialized]
     public bool alive = true;
+
 
 
     // Start is called before the first frame update
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));   
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
 
     }
 
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             marioAnimator.SetBool("onGround", onGroundState);
 
         }
-    }   
+    }
     public void JumpHold()
     {
         if (alive && jumpedState)
@@ -106,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+
     private bool moving = false;
     // FixedUpdate is called 50 times a second      
     void FixedUpdate()
@@ -160,7 +162,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 // play death animation
                 marioAnimator.Play("mario-die");
-                marioAudio.PlayOneShot(marioDeath);
+                // marioAudio.PlayOneShot(marioDeath);
+                // changed to use AudioSource component instead of AudioClip directly
+                marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
                 PlayDeathImpulse();
 
                 alive = false;
@@ -169,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-        
+
     }
 
     IEnumerator DelayedGameOver()
