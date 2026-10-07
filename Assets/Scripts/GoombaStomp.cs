@@ -14,12 +14,23 @@ public class GoombaStomp : MonoBehaviour
     private bool isStomped = false;
     public bool IsStomped => isStomped;
 
+    // sfx
+    public AudioSource stompAudio;
+    public AudioClip stompClip;
+
     public void Stomp()
     {
         if (isStomped) return;
         isStomped = true;
 
         goombaAnimator.SetTrigger("stomped");
+
+        // play stomp sound effect
+        if (stompAudio != null && stompClip != null)
+        {
+            stompAudio.PlayOneShot(stompClip);
+        }
+
         GetComponent<Collider2D>().enabled = false;
         EnemyMovement movement = GetComponent<EnemyMovement>();
         if (movement != null) movement.enabled = false;
@@ -44,8 +55,8 @@ public class GoombaStomp : MonoBehaviour
         EnemyMovement movement = GetComponent<EnemyMovement>();
         if (movement != null) movement.enabled = true;
 
-        goombaAnimator.ResetTrigger("stomped");   
-        goombaAnimator.Play("alive", 0, 0f);      
+        goombaAnimator.ResetTrigger("stomped");
+        goombaAnimator.Play("alive", 0, 0f);
 
         movement?.GameRestart();
 
