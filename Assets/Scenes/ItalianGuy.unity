@@ -4426,6 +4426,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4521805285844698760, guid: aa113df8153b4f54dbb07535749924da, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7eb68ac47e5fe4bbca37c767951ce034, type: 3}
     - target: {fileID: 4844692734956211550, guid: aa113df8153b4f54dbb07535749924da, type: 3}
       propertyPath: m_Name
       value: Goomba

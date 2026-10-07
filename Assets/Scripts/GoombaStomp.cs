@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GoombaStomp : MonoBehaviour
@@ -19,14 +20,35 @@ public class GoombaStomp : MonoBehaviour
         isStomped = true;
 
         goombaAnimator.SetTrigger("stomped");
-
-        // stop it from moving/colliding further once squished
         GetComponent<Collider2D>().enabled = false;
         EnemyMovement movement = GetComponent<EnemyMovement>();
         if (movement != null) movement.enabled = false;
 
-        GoombaStomped?.Invoke(scoreValue);   // broadcast to anyone listening
+        GoombaStomped?.Invoke(scoreValue);
 
-        Destroy(gameObject, destroyDelay);
+        StartCoroutine(DeactivateAfterDelay());
     }
+
+    IEnumerator DeactivateAfterDelay()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        gameObject.SetActive(false);   // hide instead of destroy
+    }
+
+    public void ResetGoomba()
+    {
+        isStomped = false;
+        gameObject.SetActive(true);
+
+        GetComponent<Collider2D>().enabled = true;
+        EnemyMovement movement = GetComponent<EnemyMovement>();
+        if (movement != null) movement.enabled = true;
+
+        goombaAnimator.ResetTrigger("stomped");   
+        goombaAnimator.Play("alive", 0, 0f);      
+
+        movement?.GameRestart();
+
+    }
+
 }
