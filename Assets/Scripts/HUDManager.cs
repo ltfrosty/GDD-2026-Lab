@@ -6,7 +6,7 @@ using TMPro;
 public class HUDManager : MonoBehaviour
 {
     private Vector3[] scoreTextPosition = {
-        new Vector3(-747, 473, 0),
+        new Vector3(-700, 473, 0),
         new Vector3(0, 10, 0)
         };
     private Vector3[] restartButtonPosition = {

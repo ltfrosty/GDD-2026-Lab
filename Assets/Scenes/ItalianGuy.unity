@@ -1228,8 +1228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -753, y: 473}
-  m_SizeDelta: {x: 326.6, y: 50}
+  m_AnchoredPosition: {x: -715.2, y: 473}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596154659
 MonoBehaviour:
@@ -2886,7 +2886,6 @@ GameObject:
   - component: {fileID: 1693316115}
   - component: {fileID: 1693316118}
   - component: {fileID: 1693316119}
-  - component: {fileID: 1693316120}
   - component: {fileID: 1693316121}
   - component: {fileID: 1693316122}
   - component: {fileID: 1693316123}
@@ -2993,7 +2992,7 @@ Transform:
   m_GameObject: {fileID: 1693316113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: -7.27, z: 0}
+  m_LocalPosition: {x: -10, y: -7.26, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3012,17 +3011,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 100
-  maxSpeed: 15
+  maxSpeed: 10
   upSpeed: 45
   deathImpulse: 40
   marioAnimator: {fileID: 1693316121}
   marioAudio: {fileID: 1693316122}
   marioDeathAudio: {fileID: 2009643511}
-  marioDeath: {fileID: 8300000, guid: 8d5adc107552f7a4fb40c10e09796119, type: 3}
   enemies: {fileID: 19562753}
   questionBoxes: {fileID: 1440003462}
   gameCamera: {fileID: 519420032}
   gameManager: {fileID: 1286648399}
+  bounceOffGoombaForce: 20
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  stompCheckSize: {x: 0.7, y: 0.2}
 --- !u!61 &1693316119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3069,24 +3072,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.83847725, y: 1.0246872}
   m_EdgeRadius: 0
---- !u!114 &1693316120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693316113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba83087020f79a439956d341026b1a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JumpOverGoomba
-  enemyLocation: {fileID: 27545550}
-  boxSize: {x: 0.5, y: 1, z: 0}
-  maxDistance: 0.5
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!95 &1693316121
 Animator:
   serializedVersion: 7
@@ -3343,7 +3328,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1693316120}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: JumpOverGoomba, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 1
@@ -4403,7 +4388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4064276161362183928, guid: aa113df8153b4f54dbb07535749924da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.02
       objectReference: {fileID: 0}
     - target: {fileID: 4064276161362183928, guid: aa113df8153b4f54dbb07535749924da, type: 3}
       propertyPath: m_LocalPosition.y

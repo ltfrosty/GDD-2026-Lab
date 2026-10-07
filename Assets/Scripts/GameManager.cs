@@ -25,6 +25,21 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        GoombaStomp.GoombaStomped += HandleGoombaStomped;
+    }
+
+    void OnDisable()
+    {
+        GoombaStomp.GoombaStomped -= HandleGoombaStomped;
+    }
+
+    private void HandleGoombaStomped(int amount)
+    {
+        IncreaseScore(amount);
+    }
+
     public void GameRestart()
     {
         // reset score

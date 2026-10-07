@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3425599700494716104}
   - component: {fileID: 1240903717221130866}
   - component: {fileID: 5764498173259092983}
+  - component: {fileID: -1509359662641845130}
+  - component: {fileID: 4208089270043887906}
   m_Layer: 6
   m_Name: Goomba
   m_TagString: Enemy
@@ -180,3 +182,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   startPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &-1509359662641845130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844692734956211550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8461085c79097a4a8a1670c1428efb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoombaStomp
+  goombaAnimator: {fileID: 4208089270043887906}
+  scoreValue: 1
+  destroyDelay: 0.5
+--- !u!95 &4208089270043887906
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844692734956211550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2433f6421cba6024a9277dbb8251a0cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

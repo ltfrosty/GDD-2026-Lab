@@ -153,27 +153,55 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    public float bounceOffGoombaForce = 10f;
+    public LayerMask enemyLayerMask;
+    public Vector2 stompCheckSize = new Vector2(0.7f, 0.2f);   // width x height of the detection box
     void OnTriggerEnter2D(Collider2D other)
     {
         if (alive)
         {
-            // collide with goomba -> game over
-            if (other.gameObject.CompareTag("Enemy"))
+            if (!other.gameObject.CompareTag("Enemy")) return;
+
+            GoombaStomp goomba = other.GetComponent<GoombaStomp>();
+            bool isStompHit = false;
+
+            if (goomba != null && !goomba.IsStomped)
             {
-                // play death animation
+                RaycastHit2D hit = Physics2D.BoxCast(transform.position, stompCheckSize, 0f, Vector2.down, 1.0f, enemyLayerMask);
+                Debug.Log("BoxCast hit: " + (hit.collider != null ? hit.collider.gameObject.name : "nothing"));
+
+                if (hit.collider != null && hit.collider.gameObject == other.gameObject)
+                {
+                    isStompHit = true;
+                }
+            }
+
+            if (isStompHit)
+            {
+                goomba.Stomp();
+                marioBody.linearVelocity = new Vector2(marioBody.linearVelocity.x, 0f);
+                marioBody.AddForce(Vector2.up * bounceOffGoombaForce, ForceMode2D.Impulse);
+            }
+            else if (other.CompareTag("Enemy"))
+            {
                 marioAnimator.Play("mario-die");
-                // marioAudio.PlayOneShot(marioDeath);
-                // changed to use AudioSource component instead of AudioClip directly
                 marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
                 PlayDeathImpulse();
 
                 alive = false;
 
                 StartCoroutine(DelayedGameOver());
-
             }
+
         }
 
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(transform.position + Vector3.down * 0.5f, stompCheckSize);
     }
 
     IEnumerator DelayedGameOver()
