@@ -6,9 +6,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     // Mario movement variables
     public float speed = 100;
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
 
+        SceneManager.activeSceneChanged += SetStartingPosition;
+
     }
 
     // Update is called once per frame
@@ -60,6 +63,15 @@ public class PlayerMovement : MonoBehaviour
     {
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
 
+    }
+
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "World 1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(-10f, -7.25f, 0.0f);
+        }
     }
 
     void FlipMarioSprite(int value)

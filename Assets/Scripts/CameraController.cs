@@ -22,11 +22,12 @@ public class CameraController : MonoBehaviour
         offset = this.transform.position.x - player.position.x;
         startX = this.transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
+
     }
 
     void Update()
     {
-        float desiredX = player.position.x + offset;
+        float desiredX = player.position.x + offset;    
 
         // Debug.Log("PlayerX: " + player.position.x + " desiredX: " + desiredX + " startX: " + startX + " endX: " + endX);
 
