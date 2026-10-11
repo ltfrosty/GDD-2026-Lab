@@ -6,9 +6,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     // Mario movement variables
     public float speed = 100;
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float deathImpulse = 40;
     private bool faceRightState = true;
     private bool onGroundState = true;
-
+ 
     // Mario Unity things
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
@@ -52,7 +53,24 @@ public class PlayerMovement : MonoBehaviour
         // GameObject has a Rigidbody2D sitting right there in the Inspector — Unity wouldn't connect them for you"
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
+        
 
+    }
+
+    public override void Awake()
+    {
+        base.Awake();   // handles DontDestroyOnLoad + duplicate guard
+
+        // only subscribe if we are the surviving singleton instance
+        if (this == Singleton<PlayerMovement>.instance)
+        {
+            SceneManager.activeSceneChanged += SetStartingPosition;
+        }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= SetStartingPosition;
     }
 
     // Update is called once per frame
@@ -60,6 +78,19 @@ public class PlayerMovement : MonoBehaviour
     {
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
 
+    }
+
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        gameCamera = Camera.main.transform;
+        GameObject qb = GameObject.FindGameObjectWithTag("QuestionBoxes");
+        if (qb != null) questionBoxes = qb;
+
+        if (next.name == "World 1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(-12.08f, -7.4f, 0.0f);
+        }
     }
 
     void FlipMarioSprite(int value)
@@ -224,16 +255,17 @@ public class PlayerMovement : MonoBehaviour
         faceRightState = true;
         marioSprite.flipX = false;
 
-        // reset question boxes - idk where else to put this
-        foreach (Transform eachChild in questionBoxes.transform)
+        if (questionBoxes != null)
         {
-            QuestionBoxBounce box = eachChild.GetComponentInChildren<QuestionBoxBounce>();
-            if (box != null)
+            // reset question boxes - idk where else to put this
+            foreach (Transform eachChild in questionBoxes.transform)
             {
-                box.ResetBox();
+                QuestionBoxBounce box = eachChild.GetComponentInChildren<QuestionBoxBounce>();
+                if (box != null) box.ResetBox();
+
             }
         }
-
+        
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
