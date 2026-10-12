@@ -766,8 +766,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2131249999}
+  m_Children: []
   m_Father: {fileID: 1478657607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252655063
@@ -3617,6 +3616,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8821482424714642958, guid: 1c57cf25ab8d63f45b9f9fc6a6364b5b, type: 3}
   m_PrefabInstance: {fileID: 1373625337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1383425889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4395032
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.9355874
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846123904108166292, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Spring-Powerup-MagicMushroom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd3678bf10409f6438dc34d8d38c34da, type: 3}
 --- !u!1 &1478657606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4563,68 +4619,6 @@ Transform:
   - {fileID: 700022550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2131249998
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 182634194}
-    m_Modifications:
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.69212
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.32209992
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5846123904108166292, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-      propertyPath: m_Name
-      value: Question-Box-Spring
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
---- !u!4 &2131249999 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3183835990040559190, guid: 77de8df27a7c36d429059f4bd819fb81, type: 3}
-  m_PrefabInstance: {fileID: 2131249998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4640,3 +4634,4 @@ SceneRoots:
   - {fileID: 1186433462}
   - {fileID: 833653339}
   - {fileID: 790693077}
+  - {fileID: 1383425889}
