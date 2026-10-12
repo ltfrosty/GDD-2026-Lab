@@ -8,6 +8,7 @@ TagManager:
   - Goomba
   - Enemy
   - Manager
+  - EndLimit
   layers:
   - Default
   - TransparentFX

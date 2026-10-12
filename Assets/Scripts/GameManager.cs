@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,6 +18,12 @@ public class GameManager : Singleton<GameManager>
     {
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+        SceneManager.activeSceneChanged += SceneSetup;
+    }
+    public void SceneSetup(Scene current, Scene next)
+    {
+        gameStart.Invoke();   // new scene's HUD needs initialising
+        SetScore(score);      // carry the score over
     }
 
     // Update is called once per frame

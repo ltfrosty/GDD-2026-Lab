@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-public class PlayerMovement : Singleton<PlayerMovement>
+public class PlayerMovement : MonoBehaviour
 {
     // Mario movement variables
     public float speed = 100;
@@ -25,13 +25,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
-    // public AudioClip marioDeath;
 
-    public GameObject enemies;
     public GameObject questionBoxes;
-
     public Transform gameCamera;
-    public GameManager gameManager;
 
     // state
     [System.NonSerialized]
@@ -54,8 +50,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
 
-        SceneManager.activeSceneChanged += SetStartingPosition;
-
     }
 
     // Update is called once per frame
@@ -64,14 +58,18 @@ public class PlayerMovement : Singleton<PlayerMovement>
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
 
     }
-
-    public void SetStartingPosition(Scene current, Scene next)
+    void Awake()
     {
-        if (next.name == "World 1-2")
-        {
-            // change the position accordingly in your World-1-2 case
-            this.transform.position = new Vector3(-10f, -7.25f, 0.0f);
-        }
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
+
+    void OnDestroy()
+    {
+        // clean up so the persisted GameManager doesn't accumulate dead listeners
+        if (GameManager.instance != null)
+            GameManager.instance.gameRestart.RemoveListener(GameRestart);
     }
 
     void FlipMarioSprite(int value)
@@ -225,7 +223,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
         // Frames 2 through ~36(at 60fps over 0.6s): Unity keeps running everything else completely normally — Mario's death animation plays, physics integrates his velocity into visible upward motion, gravity arcs him back down, etc.
         // After 0.6 real seconds have elapsed, Unity resumes the coroutine right after the yield line, running gameManager.GameOver().
 
-        gameManager.GameOver();
+        // gameManager.GameOver();
+        GameManager.instance.GameOver();
     }
 
     public void GameRestart()

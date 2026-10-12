@@ -14,6 +14,27 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj == null)
+        {
+            Debug.LogError("CameraController: no GameObject tagged 'Player' found.");
+            enabled = false;
+            return;
+        }
+        player = playerObj.transform;
+
+        if (endLimit == null)
+        {
+            GameObject endObj = GameObject.FindGameObjectWithTag("EndLimit");
+            if (endObj == null)
+            {
+                Debug.LogError("CameraController: no 'EndLimit' object found in this scene.");
+                enabled = false;
+                return;
+            }
+            endLimit = endObj.transform;
+        }
+
         // get coordinate of the bottom-left of the viewport
         // z doesn't matter since the camera is orthographic
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));

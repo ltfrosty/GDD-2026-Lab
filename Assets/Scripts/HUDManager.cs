@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDManager : Singleton<HUDManager>
+public class HUDManager : MonoBehaviour
 {
     private Vector3[] scoreTextPosition = {
         new Vector3(-700, 473, 0),
@@ -27,6 +27,25 @@ public class HUDManager : Singleton<HUDManager>
     void Update()
     {
 
+    }
+
+    void Awake()
+    {
+        // other instructions
+        // subscribe to events
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+    }
+
+    void OnDestroy()
+    {
+        if (GameManager.instance == null) return;
+        GameManager.instance.gameStart.RemoveListener(GameStart);
+        GameManager.instance.gameOver.RemoveListener(GameOver);
+        GameManager.instance.gameRestart.RemoveListener(GameStart);
+        GameManager.instance.scoreChange.RemoveListener(SetScore);
     }
 
     public void GameStart()
