@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191928349}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Pipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3139,7 +3139,6 @@ MonoBehaviour:
   marioAnimator: {fileID: 1693316121}
   marioAudio: {fileID: 1693316122}
   marioDeathAudio: {fileID: 2009643511}
-  enemies: {fileID: 19562753}
   questionBoxes: {fileID: 1440003462}
   gameCamera: {fileID: 519420032}
   bounceOffGoombaForce: 20

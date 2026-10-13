@@ -152,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7) | (1 << 10);
     void OnCollisionEnter2D(Collision2D col)
     {
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)

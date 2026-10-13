@@ -5,45 +5,22 @@ public class QuestionBoxBounce : MonoBehaviour
 {
     private Rigidbody2D boxBody;
     private RigidbodyConstraints2D restingConstraints;
+    private QuestionBoxPowerupController powerupController;
     private bool isDisabled = false;
 
     public float bounceDisplacement = 0.3f;
     public float maxBounceTime = 1.5f;
 
-    public GameObject coinPrefab;
-
-    public SpriteRenderer boxSprite;
-    public Animator boxAnimator;
-
-    public void ResetBox()
-    {
-        isDisabled = false;
-        boxAnimator.SetBool("disabled", false);
-    }
-    void SpawnCoin()
-    {
-        Vector3 spawnPos = transform.position + Vector3.up * 0.5f;
-        Instantiate(coinPrefab, spawnPos, Quaternion.identity);
-    }
-    
-
-    void DisableBox()
-    {
-        isDisabled = true;
-        boxAnimator.SetBool("disabled", true);   // transitions out of the blink loop
-    }
-
     void Start()
     {
         boxBody = GetComponent<Rigidbody2D>();
-
         boxBody.sleepMode = RigidbodySleepMode2D.NeverSleep;
-
-        // Preserve whatever's already set in the Inspector (e.g. FreezePositionX),
-        // and add FreezePositionY on top so standing on top does nothing by default.
         restingConstraints = boxBody.constraints | RigidbodyConstraints2D.FreezePositionY;
         boxBody.constraints = restingConstraints;
+
+        powerupController = GetComponent<QuestionBoxPowerupController>();
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -68,7 +45,8 @@ public class QuestionBoxBounce : MonoBehaviour
         boxBody.position += Vector2.up * bounceDisplacement;
         boxBody.WakeUp();
 
-        SpawnCoin();
+        if (powerupController != null)
+            powerupController.ReleasePowerup();
 
         float elapsed = 0f;
         do
@@ -82,8 +60,17 @@ public class QuestionBoxBounce : MonoBehaviour
         boxBody.linearVelocity = Vector2.zero;
         boxBody.constraints = restingConstraints;
 
-        DisableBox();
     }
 
-   
+    public void ResetBox()
+    {
+        StopCoroutine(nameof(Bounce));
+        boxBody.linearVelocity = Vector2.zero;
+        boxBody.constraints = restingConstraints;
+
+        if (powerupController != null)
+            powerupController.ResetBox();
+    }
+
+
 }

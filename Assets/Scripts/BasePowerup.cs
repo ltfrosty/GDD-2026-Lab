@@ -19,7 +19,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     // 1. concrete methods
     public PowerupType powerupType
     {
-        get // getter
+        get 
         {
             return type;
         }
@@ -27,7 +27,7 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
 
     public bool hasSpawned
     {
-        get // getter
+        get
         {
             return spawned;
         }
@@ -37,6 +37,15 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     {
         Destroy(this.gameObject);
     }
+
+    // added: lets the box put the powerup back on game restart
+    public virtual void ResetPowerup()
+    {
+        spawned = false;
+        consumed = false;
+        goRight = true;
+    }
+    
 
     // 2. abstract methods, must be implemented by derived classes
     public abstract void SpawnPowerup();
