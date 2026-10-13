@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
 
-    private int score = 0;
+    public IntVariable gameScore;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     public void SceneSetup(Scene current, Scene next)
     {
         gameStart.Invoke();   // new scene's HUD needs initialising
-        SetScore(score);      // carry the score over
+        SetScore(gameScore.Value);      // carry the score over
     }
 
     // Update is called once per frame
@@ -50,21 +50,22 @@ public class GameManager : Singleton<GameManager>
     public void GameRestart()
     {
         // reset score
-        score = 0;
-        SetScore(score);
+        gameScore.Value = 0;
+        SetScore(gameScore.Value);
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
     }
 
     public void IncreaseScore(int increment)
     {
-        score += increment;
-        SetScore(score);
+        gameScore.ApplyChange(1);
+        SetScore(gameScore.Value);
     }
 
     public void SetScore(int score)
     {
-        scoreChange.Invoke(score);
+        scoreChange.Invoke(gameScore.Value);
+
     }
 
 

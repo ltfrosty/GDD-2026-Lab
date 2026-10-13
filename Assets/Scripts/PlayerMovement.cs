@@ -11,11 +11,12 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameConstants gameConstants;
     // Mario movement variables
-    public float speed = 100;
-    public float maxSpeed = 15;
-    public float upSpeed = 50;
-    public float deathImpulse = 40;
+    float speed = 100;
+    float maxSpeed = 15;
+    float upSpeed = 50;
+    float deathImpulse = 40;
     private bool faceRightState = true;
     private bool onGroundState = true;
 
@@ -38,15 +39,16 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
+
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
-        //gameOverPanel.SetActive(false);
 
         marioBody = GetComponent<Rigidbody2D>();
-        // "GetComponent<Rigidbody2D>() searches the GameObject this script is attached to, finds the
-        // you then component of type Rigidbody2D on it, and returns a reference to it, which store
-        // in the marioBody variable. Without that line, marioBody would just be null forever, even if the
-        // GameObject has a Rigidbody2D sitting right there in the Inspector — Unity wouldn't connect them for you"
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
 

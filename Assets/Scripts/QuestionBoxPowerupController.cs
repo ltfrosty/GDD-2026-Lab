@@ -41,7 +41,7 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
         used = false;
         boxAnimator.ResetTrigger("spawn");
         boxAnimator.SetBool("disabled", false);
-        boxAnimator.Play("Blink", 0, 0f);
+        boxAnimator.Play("blink", 0, 0f);
 
         if (powerupAnimator != null)
             powerupAnimator.ResetTrigger("spawn");
@@ -49,25 +49,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
         if (powerup != null)
             powerup.ResetPowerup();
     }
-
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (other.gameObject.tag == "Player" && !powerup.hasSpawned)
-    //    {
-    //        // show disabled sprite
-    //        this.GetComponent<Animator>().SetTrigger("spawned");
-    //        // spawn the powerup
-    //        powerupAnimator.SetTrigger("spawned");
-    //    }
-    //}
-
-    //// used by animator
-    //public void Disable()
-    //{
-    //    this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-    //    transform.localPosition = new Vector3(0, 0, 0);
-    //}
-
 
 
 }
