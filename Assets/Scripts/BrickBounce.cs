@@ -3,34 +3,31 @@ using System.Collections;
 
 public class BrickBounce : MonoBehaviour
 {
+    public float bounceDisplacement = 0.3f;
+    public float maxBounceTime = 1f;
+
     private Rigidbody2D brickBody;
     private RigidbodyConstraints2D restingConstraints;
-    private bool isBouncing = false;   // prevents a second bounce while one is still playing
-
-    public float bounceDisplacement = 0.3f;
-    public float maxBounceTime = 1.5f;
-
-    [Header("Coin Variant")]
-    public bool spawnsCoin = false;   // toggle per-prefab-variant
-    public GameObject coinPrefab;
+    private BrickPowerupController controller;
+    private bool isBouncing = false;
 
     void Start()
     {
         brickBody = GetComponent<Rigidbody2D>();
         brickBody.sleepMode = RigidbodySleepMode2D.NeverSleep;
-
         restingConstraints = brickBody.constraints | RigidbodyConstraints2D.FreezePositionY;
         brickBody.constraints = restingConstraints;
+
+        controller = GetComponent<BrickPowerupController>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isBouncing) return;                                  // ignore hits mid-bounce
+        if (isBouncing) return;
         if (!collision.gameObject.CompareTag("Player")) return;
 
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            // Only bounce if hit from directly below — same check as the question box
             if (contact.normal.y > 0.5f)
             {
                 StartCoroutine(Bounce());
@@ -48,10 +45,8 @@ public class BrickBounce : MonoBehaviour
         brickBody.position += Vector2.up * bounceDisplacement;
         brickBody.WakeUp();
 
-        if (spawnsCoin)
-        {
-            SpawnCoin();
-        }
+        if (controller != null)
+            controller.ReleasePowerup();
 
         float elapsed = 0f;
         do
@@ -65,12 +60,17 @@ public class BrickBounce : MonoBehaviour
         brickBody.linearVelocity = Vector2.zero;
         brickBody.constraints = restingConstraints;
 
-        isBouncing = false;   // allow the next hit to bounce again
+        isBouncing = false;
     }
 
-    void SpawnCoin()
+    public void ResetBrick()
     {
-        Vector3 spawnPos = transform.position + Vector3.up * 0.5f;
-        Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+        StopCoroutine(nameof(Bounce));
+        isBouncing = false;
+        brickBody.linearVelocity = Vector2.zero;
+        brickBody.constraints = restingConstraints;
+
+        if (controller != null)
+            controller.ResetBrick();
     }
 }

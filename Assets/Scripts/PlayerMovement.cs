@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
 
-    public GameObject questionBoxes;
     public Transform gameCamera;
 
     // state
@@ -241,16 +240,6 @@ public class PlayerMovement : MonoBehaviour
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-
-        // reset question boxes - idk where else to put this
-        foreach (Transform eachChild in questionBoxes.transform)
-        {
-            QuestionBoxBounce box = eachChild.GetComponentInChildren<QuestionBoxBounce>();
-            if (box != null)
-            {
-                box.ResetBox();
-            }
-        }
 
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
