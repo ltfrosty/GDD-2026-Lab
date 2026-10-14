@@ -5,8 +5,9 @@ public class StarmanPowerup : BasePowerup
     public LayerMask flipOnLayers;
     public Transform spriteChild;
     public float moveForce = 3f;
-    public float bounceForce = 5f;
+    public float bounceForce = 8f;
 
+    private Vector3 startLocalPosition;
     private Vector3 hiddenLocalPosition;
 
     protected override void Start()
@@ -14,6 +15,7 @@ public class StarmanPowerup : BasePowerup
         base.Start();
         this.type = PowerupType.StarMan;
 
+        startLocalPosition = transform.localPosition;
         if (spriteChild != null)
             hiddenLocalPosition = spriteChild.localPosition;
 
@@ -34,7 +36,6 @@ public class StarmanPowerup : BasePowerup
 
         ContactPoint2D contact = col.GetContact(0);
 
-        // vertical surface -> reverse direction
         if ((flipOnLayers.value & (1 << col.gameObject.layer)) != 0
             && Mathf.Abs(contact.normal.x) > 0.5f)
         {
@@ -42,9 +43,9 @@ public class StarmanPowerup : BasePowerup
             rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocity.y);
             rigidBody.AddForce(Vector2.right * moveForce * (goRight ? 1 : -1), ForceMode2D.Impulse);
         }
-        // landed on something -> hop again (the starman's signature bounce)
         else if (contact.normal.y > 0.5f)
         {
+            rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, 0f);
             rigidBody.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
         }
     }
@@ -55,12 +56,14 @@ public class StarmanPowerup : BasePowerup
 
         rigidBody.simulated = true;
         rigidBody.bodyType = RigidbodyType2D.Dynamic;
-        rigidBody.AddForce(Vector2.right * moveForce, ForceMode2D.Impulse);
+        rigidBody.AddForce(
+            new Vector2(moveForce * (goRight ? 1 : -1), bounceForce),
+            ForceMode2D.Impulse);
     }
 
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        // TODO: invincibility — not implemented yet
+        // TODO: invincibility
     }
 
     public override void ResetPowerup()
@@ -73,8 +76,9 @@ public class StarmanPowerup : BasePowerup
         rigidBody.simulated = false;
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
 
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = startLocalPosition;
         if (spriteChild != null)
             spriteChild.localPosition = hiddenLocalPosition;
+
     }
 }

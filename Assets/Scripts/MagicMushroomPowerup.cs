@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MagicMushroomPowerup : BasePowerup
 {
-    public LayerMask flipOnLayers;        // pipes etc. — set in Inspector
-    public Transform spriteChild;         // the Mushroom child
+    public LayerMask flipOnLayers;
+    public Transform spriteChild;
     public float moveForce = 3f;
 
+    private Vector3 startLocalPosition;
     private Vector3 hiddenLocalPosition;
 
-    // setup this object's type
-    // instantiate variables
     protected override void Start()
     {
-        base.Start(); // call base class Start()
+        base.Start();
         this.type = PowerupType.MagicMushroom;
 
+        startLocalPosition = transform.localPosition;
         if (spriteChild != null)
             hiddenLocalPosition = spriteChild.localPosition;
 
-        // inert until the emerge animation finishes
+        Debug.Log($"[{name}] Start captured: startLocal={startLocalPosition}, hidden={hiddenLocalPosition}");
+
         rigidBody.simulated = false;
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
     }
@@ -29,37 +28,36 @@ public class MagicMushroomPowerup : BasePowerup
     {
         if (!spawned) return;
 
-        if (col.gameObject.CompareTag("Player") && spawned)
+        if (col.gameObject.CompareTag("Player"))
         {
-            // TODO: do something when colliding with Player
             ApplyPowerup(col.gameObject.GetComponent<PlayerMovement>());
-            gameObject.SetActive(false);   // hide, not destroy, so restart can restore it
-
+            gameObject.SetActive(false);
+            return;
         }
-        else if ((flipOnLayers.value & (1 << col.gameObject.layer)) != 0)
+
+        ContactPoint2D contact = col.GetContact(0);
+
+        if ((flipOnLayers.value & (1 << col.gameObject.layer)) != 0
+            && Mathf.Abs(contact.normal.x) > 0.5f)
         {
             goRight = !goRight;
-            rigidBody.linearVelocity = Vector2.zero;
+            rigidBody.linearVelocity = new Vector2(0, rigidBody.linearVelocity.y);
             rigidBody.AddForce(Vector2.right * moveForce * (goRight ? 1 : -1), ForceMode2D.Impulse);
         }
     }
 
-    // interface implementation
-    // called by an Animation Event at the END of the emerge clip
     public override void SpawnPowerup()
     {
         spawned = true;
 
         rigidBody.simulated = true;
         rigidBody.bodyType = RigidbodyType2D.Dynamic;
-        rigidBody.AddForce(Vector2.right * moveForce, ForceMode2D.Impulse);
+        rigidBody.AddForce(Vector2.right * moveForce * (goRight ? 1 : -1), ForceMode2D.Impulse);
     }
 
-    // interface implementation
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        // TODO: do something with the object
-
+        // TODO: Super Mario transformation
     }
 
     public override void ResetPowerup()
@@ -72,8 +70,10 @@ public class MagicMushroomPowerup : BasePowerup
         rigidBody.simulated = false;
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
 
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = startLocalPosition;
         if (spriteChild != null)
             spriteChild.localPosition = hiddenLocalPosition;
+
+        Debug.Log($"[{name}] ResetPowerup -> localPos={transform.localPosition}, spriteLocal={(spriteChild != null ? spriteChild.localPosition.ToString() : "none")}");
     }
 }

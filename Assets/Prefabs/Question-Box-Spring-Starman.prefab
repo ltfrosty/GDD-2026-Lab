@@ -430,6 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
   powerupAnimator: {fileID: 1976855433143547994}
   powerup: {fileID: 1194997404998236588}
+  powerupHiddenState: idle
 --- !u!1 &8132472295252300030
 GameObject:
   m_ObjectHideFlags: 0
