@@ -71,7 +71,7 @@ public class HUDManager : MonoBehaviour
         restartButton.localPosition = restartButtonPosition[1];
 
         // set highscore
-        highscoreText.GetComponent<TextMeshProUGUI>().text = "TOP- " + gameScore.previousHighestValue.ToString("D6");
+        highscoreText.GetComponent<TextMeshProUGUI>().text = "TOP-" + gameScore.previousHighestValue.ToString("D6");
         // show
         highscoreText.SetActive(true);
     }

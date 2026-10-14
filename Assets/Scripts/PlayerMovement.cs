@@ -45,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         deathImpulse = gameConstants.deathImpulse;
         upSpeed = gameConstants.upSpeed;
 
+        Transform audioChild = GameManager.instance.transform.Find("MarioDeath");
+        if (audioChild != null)
+            marioDeathAudio = audioChild.GetComponent<AudioSource>();
+        else
+            Debug.LogWarning("MarioDeathAudio not found under GameManager");
+
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
 
@@ -181,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
             if (goomba != null && !goomba.IsStomped)
             {
                 RaycastHit2D hit = Physics2D.BoxCast(transform.position, stompCheckSize, 0f, Vector2.down, 1.0f, enemyLayerMask);
-                Debug.Log("BoxCast hit: " + (hit.collider != null ? hit.collider.gameObject.name : "nothing"));
 
                 if (hit.collider != null && hit.collider.gameObject == other.gameObject)
                 {

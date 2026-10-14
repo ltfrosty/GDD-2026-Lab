@@ -39,7 +39,6 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
     public void ResetBox()
     {
         used = false;
-        boxAnimator.ResetTrigger("spawn");
         boxAnimator.SetBool("disabled", false);
         boxAnimator.Play("blink", 0, 0f);
 

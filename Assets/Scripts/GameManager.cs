@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        gameScore.Value = 0;
         gameStart.Invoke();
         Time.timeScale = 1.0f;
         SceneManager.activeSceneChanged += SceneSetup;

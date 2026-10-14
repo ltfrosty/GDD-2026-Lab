@@ -30,6 +30,8 @@ public class IntVariable : Variable<int>
 
     public void ResetHighestValue()
     {
+
+        Debug.Log("gameScore.Value=" + this.Value);
         previousHighestValue = 0;
     }
 
