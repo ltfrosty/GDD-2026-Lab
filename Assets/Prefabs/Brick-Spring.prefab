@@ -569,6 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrickBounce
   bounceDisplacement: 0.3
   maxBounceTime: 1
+  bumpSound: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
 --- !u!114 &8480996119180112205
 MonoBehaviour:
   m_ObjectHideFlags: 0

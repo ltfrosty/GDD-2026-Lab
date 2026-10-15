@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameScore
   m_EditorClassIdentifier: Assembly-CSharp::IntVariable
   DeveloperDescription: 
-  previousHighestValue: 0
+  previousHighestValue: 2

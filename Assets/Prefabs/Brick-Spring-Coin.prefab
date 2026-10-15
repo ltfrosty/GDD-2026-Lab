@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3584847836128157929, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: bumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
     - target: {fileID: 5846123904108166292, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: m_Name
       value: Brick-Spring-Coin

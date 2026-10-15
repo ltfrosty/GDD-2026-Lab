@@ -11,6 +11,7 @@ public class BrickBounce : MonoBehaviour
     private BrickPowerupController controller;
     private bool isBouncing = false;
 
+    public AudioClip bumpSound;
     void Start()
     {
         brickBody = GetComponent<Rigidbody2D>();
@@ -44,6 +45,9 @@ public class BrickBounce : MonoBehaviour
         Vector2 restPosition = brickBody.position;
         brickBody.position += Vector2.up * bounceDisplacement;
         brickBody.WakeUp();
+
+        if (bumpSound != null)
+            AudioSource.PlayClipAtPoint(bumpSound, transform.position);
 
         if (controller != null)
             controller.ReleasePowerup();

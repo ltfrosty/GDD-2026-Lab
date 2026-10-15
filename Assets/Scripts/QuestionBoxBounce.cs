@@ -11,6 +11,8 @@ public class QuestionBoxBounce : MonoBehaviour
     public float bounceDisplacement = 0.3f;
     public float maxBounceTime = 1.5f;
 
+    public AudioClip bumpSound;
+
     void Start()
     {
         boxBody = GetComponent<Rigidbody2D>();
@@ -44,6 +46,9 @@ public class QuestionBoxBounce : MonoBehaviour
         Vector2 restPosition = boxBody.position;
         boxBody.position += Vector2.up * bounceDisplacement;
         boxBody.WakeUp();
+
+        if (bumpSound != null)
+            AudioSource.PlayClipAtPoint(bumpSound, transform.position);
 
         if (powerupController != null)
             powerupController.ReleasePowerup();

@@ -547,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxBounce
   bounceDisplacement: 0.3
   maxBounceTime: 1
+  bumpSound: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
 --- !u!95 &4783558175711835952
 Animator:
   serializedVersion: 7
@@ -583,3 +584,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
   powerupAnimator: {fileID: 2678935214591402854}
   powerup: {fileID: 5805206043957391731}
+  powerupHiddenState: idle
