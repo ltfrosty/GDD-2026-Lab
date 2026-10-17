@@ -202,9 +202,7 @@ GameObject:
   - component: {fileID: 1589833744661951092}
   - component: {fileID: 4192047284445949303}
   - component: {fileID: 6937707273545198831}
-  - component: {fileID: 8796563113763489890}
   - component: {fileID: 4783558175711835952}
-  - component: {fileID: 1535097009213193966}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: Untagged
@@ -380,21 +378,6 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 1
   m_Frequency: 5
---- !u!114 &8796563113763489890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6969555652208123327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beaa795757ecaaf4a85a798803ac68c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxBounce
-  bounceDisplacement: 0.3
-  maxBounceTime: 1
-  bumpSound: {fileID: 8300000, guid: 97a450c65284a4a3094ba5c2221a492b, type: 3}
 --- !u!95 &4783558175711835952
 Animator:
   serializedVersion: 7
@@ -417,21 +400,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1535097009213193966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6969555652208123327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65290a960008b3c44b52e601c3b39810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
-  powerupAnimator: {fileID: 1976855433143547994}
-  powerup: {fileID: 1194997404998236588}
-  powerupHiddenState: idle
 --- !u!1 &8132472295252300030
 GameObject:
   m_ObjectHideFlags: 0

@@ -131,7 +131,7 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6346073975335423313}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicMushroomPowerup, Assembly-CSharp
         m_MethodName: SpawnPowerup
         m_Mode: 1
@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 3682112923486888049}
   - component: {fileID: 3393014619257111950}
   - component: {fileID: 4798317232794722322}
-  - component: {fileID: 6346073975335423313}
   m_Layer: 9
   m_Name: Powerup
   m_TagString: Untagged
@@ -251,25 +250,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6346073975335423313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4475806254620931137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722de01d578afc9409b2a4213e16b6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
-  type: 1
-  spawned: 0
-  flipOnLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  spriteChild: {fileID: 6432620104295222555}
-  moveForce: 3
 --- !u!1001 &9168635603998759844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -326,10 +306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick-Spring-Mushroom
       objectReference: {fileID: 0}
-    - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 6346073975335423313}
     - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: breakable
       value: 0

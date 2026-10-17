@@ -57,10 +57,6 @@ PrefabInstance:
       value: Brick-Spring-Coin
       objectReference: {fileID: 0}
     - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
-      propertyPath: powerup
-      value: 
-      objectReference: {fileID: 6896515416712109299}
-    - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: breakable
       value: 0
       objectReference: {fileID: 0}
@@ -70,6 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 3028698764960845542}
     m_RemovedComponents:
     - {fileID: 4783558175711835952, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+    - {fileID: 6981927076436005627, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -82,17 +79,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2678935214591402854, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
   m_PrefabInstance: {fileID: 1091388541954862464}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6896515416712109299 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5805206043957391731, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
-  m_PrefabInstance: {fileID: 1091388541954862464}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f338c5c94795fe4381f118e26f9dc11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
 --- !u!1 &8042780123017572415 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6969555652208123327, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}

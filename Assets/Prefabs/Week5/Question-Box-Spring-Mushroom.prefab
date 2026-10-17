@@ -72,7 +72,6 @@ GameObject:
   - component: {fileID: 2281843472841609328}
   - component: {fileID: 904872076963675097}
   - component: {fileID: 8345295512677485300}
-  - component: {fileID: 7634043875217230816}
   m_Layer: 9
   m_Name: Powerup
   m_TagString: Untagged
@@ -169,25 +168,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7634043875217230816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6254036511563081619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722de01d578afc9409b2a4213e16b6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
-  type: 1
-  spawned: 0
-  flipOnLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  spriteChild: {fileID: 890829045351812794}
-  moveForce: 3
 --- !u!1 &6969555652208123327
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,9 +181,7 @@ GameObject:
   - component: {fileID: 1589833744661951092}
   - component: {fileID: 4192047284445949303}
   - component: {fileID: 6937707273545198831}
-  - component: {fileID: 8796563113763489890}
   - component: {fileID: 4783558175711835952}
-  - component: {fileID: 1535097009213193966}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: Untagged
@@ -379,21 +357,6 @@ SpringJoint2D:
   m_Distance: 1
   m_DampingRatio: 1
   m_Frequency: 5
---- !u!114 &8796563113763489890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6969555652208123327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beaa795757ecaaf4a85a798803ac68c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxBounce
-  bounceDisplacement: 0.3
-  maxBounceTime: 1
-  bumpSound: {fileID: 8300000, guid: 97a450c65284a4a3094ba5c2221a492b, type: 3}
 --- !u!95 &4783558175711835952
 Animator:
   serializedVersion: 7
@@ -416,21 +379,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1535097009213193966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6969555652208123327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65290a960008b3c44b52e601c3b39810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
-  powerupAnimator: {fileID: 1969181404627836326}
-  powerup: {fileID: 7634043875217230816}
-  powerupHiddenState: idle
 --- !u!1 &8132472295252300030
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +510,7 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7634043875217230816}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicMushroomPowerup, Assembly-CSharp
         m_MethodName: SpawnPowerup
         m_Mode: 1

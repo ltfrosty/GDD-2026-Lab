@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 4521805285844698760}
   - component: {fileID: 3425599700494716104}
   - component: {fileID: 1240903717221130866}
-  - component: {fileID: 5764498173259092983}
-  - component: {fileID: -1509359662641845130}
   - component: {fileID: 4208089270043887906}
   - component: {fileID: 3388864397570617307}
   m_Layer: 6
@@ -170,36 +168,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5764498173259092983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844692734956211550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9622554d058a225469b2b00505197636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  startPosition: {x: 0, y: 0, z: 0}
---- !u!114 &-1509359662641845130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844692734956211550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8461085c79097a4a8a1670c1428efb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoombaStomp
-  goombaAnimator: {fileID: 4208089270043887906}
-  scoreValue: 1
-  destroyDelay: 0.5
-  stompAudio: {fileID: 3388864397570617307}
-  stompClip: {fileID: 8300000, guid: d84415726495b4d46b5a557ed2a97cfa, type: 3}
 --- !u!95 &4208089270043887906
 Animator:
   serializedVersion: 7
