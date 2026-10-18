@@ -1,44 +1,17 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
-public class BrickPowerupController : MonoBehaviour, IPowerupController
+public class BrickPowerupController : BasePowerupController
 {
-    [Header("Powerup (leave empty for a plain brick)")]
-    public Animator powerupAnimator;
-    public BasePowerup powerup;
-
     [Header("Breaking")]
-    public bool breakable = true;        // false for bricks that should never break
-    public GameObject debrisPrefab;      // optional shatter effect
+    public bool breakable = true;
+    public GameObject debrisPrefab;
 
-    private Animator brickAnimator;
-    private bool used = false;
-    public bool IsUsed => used;
+    // an empty brick can be bumped forever; one with a powerup is spent after use
+    protected override bool CanBeHit() => !HasPowerup || !used;
 
-    // a brick with no powerup can be hit forever; one with a powerup is spent after use
-    public bool HasPowerup => powerup != null;
-
-    void Start()
-    {
-        brickAnimator = GetComponent<Animator>();
-    }
-
-    public void ReleasePowerup()
-    {
-        if (powerup == null) return;              // plain brick: just bounces
-        if (used || powerup.hasSpawned) return;
-
-        powerupAnimator.SetTrigger("spawn");
-        Disable();
-    }
-
-    public void Disable()
-    {
-        used = true;
-        if (brickAnimator != null)
-            brickAnimator.SetBool("disabled", true);
-    }
-
-    // called when Super Mario hits a brick that has nothing in it
+    // called when Super Mario hits an empty brick
     public void Break()
     {
         if (!breakable || HasPowerup) return;
@@ -47,20 +20,5 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
             Instantiate(debrisPrefab, transform.position, Quaternion.identity);
 
         gameObject.SetActive(false);
-    }
-
-    public void ResetBrick()
-    {
-        used = false;
-        gameObject.SetActive(true);
-
-        if (brickAnimator != null)
-            brickAnimator.SetBool("disabled", false);
-
-        if (powerupAnimator != null)
-            powerupAnimator.ResetTrigger("spawn");
-
-        if (powerup != null)
-            powerup.ResetPowerup();
     }
 }

@@ -151,6 +151,11 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         // TODO: scale up, swap animator layer, grant one free hit
     }
 
+    public void MakeInvincible()
+    {
+        // TODO: timed invincibility, flashing sprite
+    }
+
     // OnGameRestart
     public void GameRestart()
     {

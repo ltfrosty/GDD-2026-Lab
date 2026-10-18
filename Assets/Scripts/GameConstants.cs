@@ -24,4 +24,12 @@ public class GameConstants : ScriptableObject
     public float goombaMaxOffset = 2.0f;
     public int goombaScoreValue = 1;
     public float goombaDestroyDelay = 0.5f;
+
+    // Powerup Box
+    public float boxBounceDisplacement = 0.3f;
+    public float boxMaxBounceTime = 1f;
+
+    // Starman
+    public float powerupMoveForce = 3f;
+    public float starmanBounceForce = 8f;
 }

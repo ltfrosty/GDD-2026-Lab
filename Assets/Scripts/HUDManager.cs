@@ -20,50 +20,24 @@ public class HUDManager : MonoBehaviour
 
     public IntVariable gameScore;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void Awake()
-    {
-        // other instructions
-        // subscribe to events
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameOver.AddListener(GameOver);
-        GameManager.instance.gameRestart.AddListener(GameStart);
-        GameManager.instance.scoreChange.AddListener(SetScore);
-    }
-
-    void OnDestroy()
-    {
-        if (GameManager.instance == null) return;
-        GameManager.instance.gameStart.RemoveListener(GameStart);
-        GameManager.instance.gameOver.RemoveListener(GameOver);
-        GameManager.instance.gameRestart.RemoveListener(GameStart);
-        GameManager.instance.scoreChange.RemoveListener(SetScore);
-    }
-
+    // OnGameStart, OnGameRestart
     public void GameStart()
     {
-        // hide gameover panel
         gameOverPanel.SetActive(false);
         scoreText.transform.localPosition = scoreTextPosition[0];
         restartButton.localPosition = restartButtonPosition[0];
+        SetScore();
     }
 
-    public void SetScore(int score)
+    // OnUpdateScore
+    public void SetScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + gameScore.Value;
     }
 
-
+    // OnGameOver
     public void GameOver()
     {
         gameOverPanel.SetActive(true);

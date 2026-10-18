@@ -6,19 +6,18 @@ public class MusicManager : Singleton<MusicManager>
 
     void Start()
     {
-        GameManager.instance.gameOver.AddListener(StopMusic);
-        GameManager.instance.gameRestart.AddListener(RestartMusic);
-
         if (!themeMusic.isPlaying)
             themeMusic.Play();
     }
 
-    void StopMusic()
+    // OnGameOver
+    public void StopMusic()
     {
         themeMusic.Stop();
     }
 
-    void RestartMusic()
+    // OnGameRestart
+    public void RestartMusic()
     {
         themeMusic.Stop();
         themeMusic.Play();

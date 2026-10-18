@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 3682112923486888049}
   - component: {fileID: 3393014619257111950}
   - component: {fileID: 4798317232794722322}
+  - component: {fileID: 8852036136725629052}
   m_Layer: 9
   m_Name: Powerup
   m_TagString: Untagged
@@ -250,6 +251,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8852036136725629052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4475806254620931137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722de01d578afc9409b2a4213e16b6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicMushroomPowerup
+  type: 1
+  spawned: 0
+  powerupCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e7f93b5ad6a59954a85ee08e1fefd0d3, type: 2}
+        m_TargetAssemblyTypeName: PowerupGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spriteChild: {fileID: 6432620104295222555}
+  gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
+  flipOnLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1001 &9168635603998759844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,6 +346,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: powerupAnimator
+      value: 
+      objectReference: {fileID: 735077378400269811}
+    - target: {fileID: 9057280171612675363, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: powerup
+      value: 
+      objectReference: {fileID: 8852036136725629052}
+    - target: {fileID: 9057280171612675363, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: powerupAnimator
       value: 
       objectReference: {fileID: 735077378400269811}

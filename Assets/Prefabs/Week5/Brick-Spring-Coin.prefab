@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick-Spring-Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 6981927076436005627, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: powerup
+      value: 
+      objectReference: {fileID: 7111178976999402792}
     - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: breakable
       value: 0
@@ -64,19 +68,69 @@ PrefabInstance:
       propertyPath: powerupAnimator
       value: 
       objectReference: {fileID: 3028698764960845542}
-    m_RemovedComponents:
-    - {fileID: 4783558175711835952, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
-    - {fileID: 6981927076436005627, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+    - target: {fileID: 9057280171612675363, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: powerup
+      value: 
+      objectReference: {fileID: 7111178976999402792}
+    - target: {fileID: 9057280171612675363, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: powerupAnimator
+      value: 
+      objectReference: {fileID: 3028698764960845542}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6969555652208123327, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1936755862463444038}
+    - targetCorrespondingSourceObject: {fileID: 2864545899993935167, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7111178976999402792}
   m_SourcePrefab: {fileID: 100100000, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+--- !u!1 &2946916876272664767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2864545899993935167, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+  m_PrefabInstance: {fileID: 1091388541954862464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7111178976999402792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946916876272664767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f338c5c94795fe4381f118e26f9dc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinPowerup
+  type: 0
+  spawned: 0
+  powerupCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e7f93b5ad6a59954a85ee08e1fefd0d3, type: 2}
+        m_TargetAssemblyTypeName: PowerupGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spriteChild: {fileID: 5458033549847954687}
+  collectSound: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
 --- !u!95 &3028698764960845542 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2678935214591402854, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+  m_PrefabInstance: {fileID: 1091388541954862464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5458033549847954687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4943739083227441535, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
   m_PrefabInstance: {fileID: 1091388541954862464}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8042780123017572415 stripped

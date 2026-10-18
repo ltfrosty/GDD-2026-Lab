@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class BasePowerup : MonoBehaviour, IPowerup
 {
@@ -8,24 +9,35 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
     protected bool goRight = true;
     protected Rigidbody2D rigidBody;
 
+    [Header("Events raised by this powerup")]
+    public UnityEvent<IPowerup> powerupCollected;
+
+    protected Vector3 startLocalPosition;
+    protected Vector3 hiddenLocalPosition;
+
+    public Transform spriteChild;
+
     protected virtual void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+
+        startLocalPosition = transform.localPosition;
+        if (spriteChild != null)
+            hiddenLocalPosition = spriteChild.localPosition;
     }
 
-    public PowerupType powerupType
-    {
-        get { return type; }
-    }
+    public PowerupType powerupType => type;
+    public bool hasSpawned => spawned;
 
-    public bool hasSpawned
-    {
-        get { return spawned; }
-    }
+    public void DestroyPowerup() => Destroy(this.gameObject);
 
-    public void DestroyPowerup()
+    protected void Collect()
     {
-        Destroy(this.gameObject);
+        if (consumed) return;
+        consumed = true;
+
+        powerupCollected.Invoke(this);
+        gameObject.SetActive(false);
     }
 
     public virtual void ResetPowerup()
@@ -33,6 +45,12 @@ public abstract class BasePowerup : MonoBehaviour, IPowerup
         spawned = false;
         consumed = false;
         goRight = true;
+
+        gameObject.SetActive(true);
+
+        transform.localPosition = startLocalPosition;
+        if (spriteChild != null)
+            spriteChild.localPosition = hiddenLocalPosition;
     }
 
     public abstract void SpawnPowerup();

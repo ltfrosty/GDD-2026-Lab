@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3183835990040559190}
   - component: {fileID: 347186106792284734}
+  - component: {fileID: 3150772947564554776}
   m_Layer: 7
   m_Name: Question-Box-Spring-Starman
   m_TagString: Untagged
@@ -61,6 +62,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3150772947564554776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846123904108166292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52b7b81ed2ff6247a058722fd423b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleGameEventListener
+  Event: {fileID: 11400000, guid: f5a0494366652694c960cb7262cdb1b8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4926415147854073426}
+        m_TargetAssemblyTypeName: QuestionBoxPowerupController, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6254036511563081619
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,12 +212,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StarmanPowerup
   type: 3
   spawned: 0
+  powerupCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: e7f93b5ad6a59954a85ee08e1fefd0d3, type: 2}
+        m_TargetAssemblyTypeName: PowerupGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spriteChild: {fileID: 890829045351812794}
+  gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
   flipOnLayers:
     serializedVersion: 2
     m_Bits: 1024
-  spriteChild: {fileID: 890829045351812794}
-  moveForce: 3
-  bounceForce: 10
 --- !u!1 &6969555652208123327
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +246,7 @@ GameObject:
   - component: {fileID: 4192047284445949303}
   - component: {fileID: 6937707273545198831}
   - component: {fileID: 4783558175711835952}
+  - component: {fileID: 4926415147854073426}
   m_Layer: 7
   m_Name: Question-Box
   m_TagString: Untagged
@@ -400,6 +444,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4926415147854073426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969555652208123327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65290a960008b3c44b52e601c3b39810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestionBoxPowerupController
+  gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
+  powerupAnimator: {fileID: 1976855433143547994}
+  powerup: {fileID: 1194997404998236588}
+  powerupHiddenState: idle
+  bumpSound: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
+  idleState: blink
 --- !u!1 &8132472295252300030
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,71 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
-    // events
-    public UnityEvent gameStart;
-    public UnityEvent gameRestart;
-    public UnityEvent<int> scoreChange;
-    public UnityEvent gameOver;
-
     public IntVariable gameScore;
+    public GameConstants gameConstants;
+
+    [Header("Events this script raises")]
+    public SimpleGameEvent onGameStart;
+    public SimpleGameEvent onUpdateScore;
 
     void Start()
     {
-        gameScore.Value = 0;
-        gameStart.Invoke();
+        Application.targetFrameRate = gameConstants.targetFrameRate;
         Time.timeScale = 1.0f;
-        SceneManager.activeSceneChanged += SceneSetup;
+        onGameStart.Raise();
+        onUpdateScore.Raise();
     }
-    public void SceneSetup(Scene current, Scene next)
+
+    // OnIncrementScore (int payload)
+    public void IncreaseScore(int amount)
     {
-        gameStart.Invoke();   // new scene's HUD needs initialising
-        SetScore(gameScore.Value);      // carry the score over
+        gameScore.ApplyChange(amount);
+        onUpdateScore.Raise();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    // OnGameResumed
+    public void ResumeGame() => Time.timeScale = 1.0f;
 
-    }
+    // OnGameOver
+    public void GameOver() => Time.timeScale = 0.0f;
 
-    void OnEnable()
-    {
-    }
-
-    void OnDisable()
-    {
-    }
-
+    // OnGameRestart
     public void GameRestart()
     {
-        // reset score
         gameScore.Value = 0;
-        SetScore(gameScore.Value);
-        gameRestart.Invoke();
+        onUpdateScore.Raise();
         Time.timeScale = 1.0f;
     }
 
-    public void IncreaseScore(int increment)
+    // OnPowerupAffectsManager (IPowerup payload)
+    public void RequestPowerupEffect(IPowerup i)
     {
-        gameScore.ApplyChange(1);
-        SetScore(gameScore.Value);
-    }
-
-    public void SetScore(int score)
-    {
-        scoreChange.Invoke(gameScore.Value);
-
-    }
-
-
-    public void GameOver()
-    {
-        Time.timeScale = 0.0f;
-        gameOver.Invoke();
+        i.ApplyPowerup(this);
     }
 }
