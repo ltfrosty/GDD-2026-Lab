@@ -29,7 +29,7 @@ public class StarmanPowerup : BasePowerup
 
         if (col.gameObject.CompareTag("Player"))
         {
-            ApplyPowerup(col.gameObject.GetComponent<PlayerMovement>());
+            ApplyPowerup(col.gameObject.GetComponent<PlayerController>());
             gameObject.SetActive(false);
             return;
         }

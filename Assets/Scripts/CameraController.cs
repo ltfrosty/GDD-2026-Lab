@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     private float endX;           // largest x-coordinate of the Camera
     private float viewportHalfWidth;
 
+    private Vector3 startPosition;
+
     void Start()
     {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -44,6 +46,8 @@ public class CameraController : MonoBehaviour
         startX = this.transform.position.x;
         endX = endLimit.transform.position.x - viewportHalfWidth;
 
+        startPosition = transform.position;
+
     }
 
     void Update()
@@ -62,4 +66,12 @@ public class CameraController : MonoBehaviour
             );
         }
     }
+
+    public void GameRestart()
+    {
+        // reset camera position
+        transform.position = startPosition;
+    }
+
+
 }

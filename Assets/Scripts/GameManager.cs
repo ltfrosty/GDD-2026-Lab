@@ -35,17 +35,10 @@ public class GameManager : Singleton<GameManager>
 
     void OnEnable()
     {
-        GoombaStomp.GoombaStomped += HandleGoombaStomped;
     }
 
     void OnDisable()
     {
-        GoombaStomp.GoombaStomped -= HandleGoombaStomped;
-    }
-
-    private void HandleGoombaStomped(int amount)
-    {
-        IncreaseScore(amount);
     }
 
     public void GameRestart()
