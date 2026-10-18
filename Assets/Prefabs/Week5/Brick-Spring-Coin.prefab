@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: powerup
       value: 
       objectReference: {fileID: 7111178976999402792}
+    - target: {fileID: 8280799772415401476, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7111178976999402792}
+    - target: {fileID: 8280799772415401476, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
+      propertyPath: useInt.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnPowerup
+      objectReference: {fileID: 0}
     - target: {fileID: 8480996119180112205, guid: 532674ce16467eb4fb1d37df3af328af, type: 3}
       propertyPath: breakable
       value: 0

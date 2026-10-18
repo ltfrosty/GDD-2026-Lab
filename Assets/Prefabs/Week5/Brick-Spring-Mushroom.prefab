@@ -131,7 +131,7 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8852036136725629052}
         m_TargetAssemblyTypeName: MagicMushroomPowerup, Assembly-CSharp
         m_MethodName: SpawnPowerup
         m_Mode: 1

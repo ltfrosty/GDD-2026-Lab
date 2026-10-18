@@ -271,7 +271,7 @@ MonoBehaviour:
   useInt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3983851069468570438}
         m_TargetAssemblyTypeName: CoinPowerup, Assembly-CSharp
         m_MethodName: SpawnPowerup
         m_Mode: 1
