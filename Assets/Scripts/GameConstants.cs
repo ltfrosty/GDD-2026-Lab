@@ -18,6 +18,7 @@ public class GameConstants : ScriptableObject
     public Vector3 marioStartingPosition;
     public Vector3 marioStartPosition = new Vector3(-10.0f, -4.69f, 0.0f);
     public float gameOverDelay = 1.2f;
+    public float flickerInterval;
 
     // Goomba
     public float goombaPatrolTime = 5.0f;
