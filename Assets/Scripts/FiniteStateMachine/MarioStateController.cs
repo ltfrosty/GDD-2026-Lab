@@ -53,4 +53,9 @@ public class MarioStateController : StateController
         spriteRenderer.enabled = true;
     }
 
+    public void Fire()
+    {
+        this.currentState.DoEventTriggeredActions(this, ActionType.Attack);
+    }
+
 }

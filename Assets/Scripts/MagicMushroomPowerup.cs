@@ -49,11 +49,21 @@ public class MagicMushroomPowerup : BasePowerup
             ForceMode2D.Impulse);
     }
 
+    // public override void ApplyPowerup(MonoBehaviour i)
+    // {
+    //     PlayerController player = i as PlayerController;
+    //     if (player != null) player.MakeSuperMario();
+    // }
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        PlayerController player = i as PlayerController;
-        if (player != null) player.MakeSuperMario();
+        MarioStateController mario;
+
+        if (i.TryGetComponent<MarioStateController>(out mario))
+        {
+            mario.SetPowerup(this.powerupType);
+        }
     }
+
 
     public override void ResetPowerup()
     {

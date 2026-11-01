@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     [Header("Events this script raises")]
     public SimpleGameEvent onGameOver;
 
+    public BoolVariable marioFaceRight;
     [System.NonSerialized] public bool alive = true;
 
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7) | (1 << 10);
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
+        updateMarioShouldFaceRight(faceRightState);
     }
 
     void Update()
@@ -72,6 +74,9 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     public void MoveCheck(int value)
     {
+
+        if (!alive) return;
+
         if (value == 0) { moving = false; return; }
 
         FlipMarioSprite(value);
@@ -89,18 +94,26 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     {
         if (value == -1 && faceRightState)
         {
-            faceRightState = false;
-            marioSprite.flipX = true;
+            updateMarioShouldFaceRight(false);
+            marioSprite.flipX = !faceRightState;
+
             if (marioBody.linearVelocity.x > 0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
         else if (value == 1 && !faceRightState)
         {
-            faceRightState = true;
-            marioSprite.flipX = false;
+            updateMarioShouldFaceRight(true);
+            marioSprite.flipX = !faceRightState;
+
             if (marioBody.linearVelocity.x < -0.05f)
                 marioAnimator.SetTrigger("onSkid");
         }
+    }
+
+    private void updateMarioShouldFaceRight(bool value)
+    {
+        faceRightState = value;
+        marioFaceRight.SetValue(faceRightState);
     }
 
     // ---- ground detection ----
@@ -119,17 +132,22 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // OnDamagePlayer
     public void DamageMario()
     {
-        if (!alive) return;
-        alive = false;
-
-        marioAnimator.Play("mario-die");
-
-        if (marioDeathClip != null)
-            AudioSource.PlayClipAtPoint(marioDeathClip, transform.position);
-
-        PlayDeathImpulse();
-        StartCoroutine(DelayedGameOver());
+        GetComponent<MarioStateController>()
+            .SetPowerup(PowerupType.Damage);
     }
+    // public void DamageMario()
+    // {
+    //     if (!alive) return;
+    //     alive = false;
+
+    //     marioAnimator.Play("mario-die");
+
+    //     if (marioDeathClip != null)
+    //         AudioSource.PlayClipAtPoint(marioDeathClip, transform.position);
+
+    //     PlayDeathImpulse();
+    //     StartCoroutine(DelayedGameOver());
+    // }
 
     // OnBouncePlayer
     public void BounceOffEnemy()
@@ -164,7 +182,8 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
         marioBody.transform.position = gameConstants.marioStartPosition;
         marioBody.linearVelocity = Vector2.zero;
 
-        faceRightState = true;
+        //faceRightState = true;
+        updateMarioShouldFaceRight(true);
         marioSprite.flipX = false;
         moving = false;
         jumpedState = false;
@@ -183,5 +202,20 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     }
 
     void PlayJumpSound() => marioAudio.PlayOneShot(marioAudio.clip);
-    void PlayDeathImpulse() => marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    //void PlayDeathImpulse() => marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    public void PlayDeathImpulse()
+    {
+        alive = false;
+        moving = false;
+        marioBody.linearVelocity = Vector2.zero;
+        marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+
+        if (marioDeathClip != null)
+            marioAudio.PlayOneShot(marioDeathClip);
+    }
+
+    public void GameOverScene()
+    {
+        onGameOver.Raise();
+    }
 }

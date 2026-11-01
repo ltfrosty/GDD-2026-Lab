@@ -8,6 +8,7 @@ public class ActionManager : MonoBehaviour
     public UnityEvent jump;
     public UnityEvent jumpHold;
     public UnityEvent<int> moveCheck;
+    public UnityEvent fire;
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {
@@ -41,7 +42,7 @@ public class ActionManager : MonoBehaviour
         //else if (context.canceled)
         //    Debug.Log("Jump was cancelled");
 
-         if (context.performed)
+        if (context.performed)
         {
             jump.Invoke();
         }
@@ -86,6 +87,14 @@ public class ActionManager : MonoBehaviour
             Vector2 point = context.ReadValue<Vector2>();
             // Debug.Log($"Point detected: {point}");
 
+        }
+    }
+
+    public void OnFireAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            fire.Invoke();
         }
     }
 
