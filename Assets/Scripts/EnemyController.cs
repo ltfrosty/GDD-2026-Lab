@@ -73,6 +73,15 @@ public class EnemyController : MonoBehaviour
 
         if (!other.gameObject.CompareTag("Player")) return;
 
+        // Starman Mario kills us on any touch; damagePlayer still fires so his buff knows it was used
+        BuffStateController buff = other.GetComponent<BuffStateController>();
+        if (buff != null && buff.isStarmanActive)
+        {
+            Die();
+            damagePlayer.Invoke();
+            return;
+        }
+
         // stomp only when Mario comes down onto our head: his feet are above our centre
         // and he is not moving up. Running into us from the side always damages him.
         Rigidbody2D playerBody = other.attachedRigidbody;

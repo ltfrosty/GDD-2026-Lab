@@ -70,6 +70,10 @@ public class StarmanPowerup : BasePowerup
         {
             buff.SetBuff(this.powerupType);
         }
+        else
+        {
+            Debug.LogWarning($"[{name}] Starman collected but {i.name} has no BuffStateController");
+        }
     }
 
     public override void ResetPowerup()

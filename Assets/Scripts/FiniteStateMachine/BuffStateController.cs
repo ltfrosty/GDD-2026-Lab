@@ -37,6 +37,7 @@ public class BuffStateController : StateController
     // called by StartStarmanAction
     public void StartStarman(AudioClip startClip)
     {
+        Debug.Log("Starman buff started");
         isStarmanActive = true;
         if (startClip != null) audioSource.PlayOneShot(startClip);
         StartCoroutine(CycleSpriteColor());
@@ -45,13 +46,15 @@ public class BuffStateController : StateController
     // called by ExitStarmanAction
     public void ExitStarman(AudioClip exitClip)
     {
+        Debug.Log("Starman buff ended");
         isStarmanActive = false;
         if (exitClip != null) audioSource.PlayOneShot(exitClip);
     }
 
     private IEnumerator CycleSpriteColor()
     {
-        Color[] colors = { Color.white, Color.yellow, Color.red, Color.green };
+        // strong tints so the flashing is obvious on Mario's red/brown sprite
+        Color[] colors = { Color.white, new Color(1f, 0.25f, 0.25f), new Color(0.25f, 1f, 0.25f), new Color(0.35f, 0.35f, 1f) };
         int i = 0;
         while (isStarmanActive)
         {

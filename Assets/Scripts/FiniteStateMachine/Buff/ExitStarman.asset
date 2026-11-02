@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ExitStarman
   m_EditorClassIdentifier: Assembly-CSharp::ExitStarmanAction
   starmanEnd: {fileID: 8300000, guid: b520e6b32619c490a934225b9b162dc2, type: 3}
+  onStarmanEnd: {fileID: 11400000, guid: 64c455acfbbd4e74a2e8ccd067024b47, type: 2}

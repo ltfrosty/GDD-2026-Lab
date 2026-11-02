@@ -137,9 +137,14 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // OnDamagePlayer
     public void DamageMario()
     {
-        // Starman buff makes Mario immune to damage
+        // Starman buff absorbs the hit (the enemy dies instead) and is used up:
+        // the buff FSM sees Damage and goes back to Default
         BuffStateController buff = GetComponent<BuffStateController>();
-        if (buff != null && buff.isStarmanActive) return;
+        if (buff != null && buff.isStarmanActive)
+        {
+            buff.SetBuff(PowerupType.Damage);
+            return;
+        }
 
         GetComponent<MarioStateController>()
             .SetPowerup(PowerupType.Damage);

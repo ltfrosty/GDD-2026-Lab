@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: StartStarman
   m_EditorClassIdentifier: Assembly-CSharp::StartStarmanAction
   starmanStart: {fileID: 8300000, guid: 26301d2e86e99420599e315297a825df, type: 3}
+  onStarmanStart: {fileID: 11400000, guid: 243f6831c8314cf58f9b3682ffccbc4d, type: 2}
