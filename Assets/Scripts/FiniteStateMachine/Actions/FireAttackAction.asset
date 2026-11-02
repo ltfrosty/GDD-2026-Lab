@@ -16,4 +16,4 @@ MonoBehaviour:
   impulseForce: 3
   degree: -10
   attackPrefab: {fileID: 6354459246711123853, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-  marioFaceRight: {fileID: 0}
+  marioFaceRight: {fileID: 11400000, guid: 8a856b767082b4deb95b4a10103cca05, type: 2}

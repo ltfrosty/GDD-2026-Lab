@@ -13,6 +13,7 @@ public class PowerupManager : MonoBehaviour
         switch (i.powerupType)
         {
             case PowerupType.MagicMushroom:
+            case PowerupType.FireFlower:
             case PowerupType.StarMan:
                 onPowerupAffectsPlayer.Raise(i);
                 break;

@@ -21,3 +21,4 @@ MonoBehaviour:
   marioStartingPosition: {x: -10, y: -7.26, z: 0}
   goombaPatrolTime: 2
   goombaMaxOffset: 5
+  flickerInterval: 0.1

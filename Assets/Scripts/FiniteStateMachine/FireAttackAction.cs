@@ -18,6 +18,12 @@ public class FireAttackAction : Action
             // instantiate it where controller (mario) is
             GameObject x = Instantiate(attackPrefab, controller.transform.position, Quaternion.identity);
 
+            // the fireball spawns inside Mario's collider, so don't let it collide with Mario
+            Collider2D attackCollider = x.GetComponent<Collider2D>();
+            Collider2D marioCollider = controller.GetComponent<Collider2D>();
+            if (attackCollider != null && marioCollider != null)
+                Physics2D.IgnoreCollision(attackCollider, marioCollider);
+
             // Get the Rigidbody component of the instantiated object
             Rigidbody2D rb = x.GetComponent<Rigidbody2D>();
             // Check if the Rigidbody component exists

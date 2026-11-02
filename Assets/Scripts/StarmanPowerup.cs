@@ -61,13 +61,15 @@ public class StarmanPowerup : BasePowerup
             ForceMode2D.Impulse);
     }
 
+    // Starman is a buff, so it goes to the separate BuffStateController FSM
     public override void ApplyPowerup(MonoBehaviour i)
     {
-        PlayerController player = i as PlayerController;
-        if (player != null)
-            player.MakeInvincible();
-        else
-            Debug.LogWarning($"[{name}] ApplyPowerup got {i?.GetType().Name ?? "null"}, expected PlayerController");
+        BuffStateController buff;
+
+        if (i.TryGetComponent<BuffStateController>(out buff))
+        {
+            buff.SetBuff(this.powerupType);
+        }
     }
 
     public override void ResetPowerup()

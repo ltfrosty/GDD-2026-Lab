@@ -11,11 +11,6 @@ public class EnemyController : MonoBehaviour
     public UnityEvent<int> incrementScore;
     public UnityEvent bouncePlayer;
 
-    [Header("Stomp detection")]
-    public LayerMask playerLayerMask;
-    public Vector2 stompCheckSize = new Vector2(0.7f, 0.2f);
-    public float stompCheckDistance = 0.5f;
-
     [Header("Scene refs")]
     public Animator goombaAnimator;
     public AudioClip stompSound;
@@ -67,17 +62,24 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (isStomped) return;
+
+        // our collider is a trigger, so FireMario's fireballs arrive here (not in OnCollisionEnter2D)
+        if (other.GetComponent<FireballController>() != null)
+        {
+            Destroy(other.gameObject);
+            Die();
+            return;
+        }
+
         if (!other.gameObject.CompareTag("Player")) return;
 
-        // cast UP from our own position — is the player standing on our head?
-        RaycastHit2D hit = Physics2D.BoxCast(
-            transform.position, stompCheckSize, 0f,
-            Vector2.up, stompCheckDistance, playerLayerMask);
+        // stomp only when Mario comes down onto our head: his feet are above our centre
+        // and he is not moving up. Running into us from the side always damages him.
+        Rigidbody2D playerBody = other.attachedRigidbody;
+        bool falling = playerBody == null || playerBody.linearVelocity.y <= 0.01f;
+        bool feetAboveCentre = other.bounds.min.y >= enemyCollider.bounds.center.y;
 
-        bool stomped = hit.collider != null
-                       && hit.collider.gameObject == other.gameObject;
-
-        if (stomped)
+        if (falling && feetAboveCentre)
             Stomp();
         else
             damagePlayer.Invoke();
@@ -85,14 +87,18 @@ public class EnemyController : MonoBehaviour
 
     void Stomp()
     {
+        bouncePlayer.Invoke();
+        Die();
+    }
+
+    void Die()
+    {
         isStomped = true;
 
         goombaAnimator.SetTrigger("stomped");
 
         if (stompSound != null)
             AudioSource.PlayClipAtPoint(stompSound, transform.position);
-
-        bouncePlayer.Invoke();
 
         enemyCollider.enabled = false;
         incrementScore.Invoke(gameConstants.goombaScoreValue);
@@ -121,11 +127,5 @@ public class EnemyController : MonoBehaviour
 
         goombaAnimator.ResetTrigger("stomped");
         goombaAnimator.Play("alive", 0, 0f);
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireCube(transform.position + Vector3.up * stompCheckDistance, stompCheckSize);
     }
 }

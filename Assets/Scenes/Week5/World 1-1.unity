@@ -1176,6 +1176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameScore: {fileID: 11400000, guid: d2a3f7e0febe47b4e94c4be146a73666, type: 2}
   gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
+  resetScoreOnStart: 1
   onGameStart: {fileID: 11400000, guid: ebd3e0ff8820ccb4eaede34733c4b9be, type: 2}
   onUpdateScore: {fileID: 11400000, guid: 8ba76b73fb806b1429f71c1020bb92a4, type: 2}
 --- !u!114 &551507783
@@ -2913,6 +2914,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3183835990040559190, guid: 062de3a0dd7579e46bb447183976cdc5, type: 3}
   m_PrefabInstance: {fileID: 1422307390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1422307500
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1440003463}
+    m_Modifications:
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846123904108166292, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+      propertyPath: m_Name
+      value: Question-Box-Spring-FireFlower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+--- !u!4 &1422307501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3183835990040559190, guid: 23e568890fc44ccdb0dad1f518fec239, type: 3}
+  m_PrefabInstance: {fileID: 1422307500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1440003462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,6 +3009,7 @@ Transform:
   - {fileID: 1156244155}
   - {fileID: 1422307391}
   - {fileID: 1508835262}
+  - {fileID: 1422307501}
   m_Father: {fileID: 231530973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1508835261
@@ -4659,6 +4723,30 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8471344639169395907}
+        m_TargetAssemblyTypeName: MarioStateController, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument:
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8471344639169395908}
+        m_TargetAssemblyTypeName: BuffStateController, Assembly-CSharp
+        m_MethodName: GameRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument:
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7861985004591390776}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: GameRestart
@@ -4668,7 +4756,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!61 &3935731617436269880
@@ -4739,6 +4827,7 @@ GameObject:
   - component: {fileID: 8130337271563106395}
   - component: {fileID: 8471344639169395906}
   - component: {fileID: 8471344639169395907}
+  - component: {fileID: 8471344639169395908}
   m_Layer: 11
   m_Name: Mario
   m_TagString: Player
@@ -4773,63 +4862,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1001 &4920356478267468953
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6354459246711123853, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_Name
-      value: FireBall
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.192901
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.518396
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8885794907926220020, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dde1aa4fbdc8e4fcf8cceac01c5d626b, type: 3}
 --- !u!114 &6474314040340655076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5231,6 +5263,27 @@ MonoBehaviour:
   currentPowerupType: 1
   shouldBeNextState: -1
   gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
+--- !u!114 &8471344639169395908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428764162897210674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97df5e5f7b434067a6fa62140338901c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::BuffStateController
+  startState: {fileID: 11400000, guid: ed68ae4acbec4ed3bc67648b1e77cca5, type: 2}
+  previousState: {fileID: 0}
+  currentState: {fileID: 11400000, guid: ed68ae4acbec4ed3bc67648b1e77cca5, type: 2}
+  remainState: {fileID: 11400000, guid: ac5bd820654be4ac38598e2aff72180e, type: 2}
+  transitionStateChanged: 0
+  stateTimeElapsed: 0
+  isActive: 1
+  currentBuffType: -1
+  gameConstants: {fileID: 11400000, guid: b46e01869516fcc4aa50ec3de5a80e62, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5247,4 +5300,3 @@ SceneRoots:
   - {fileID: 376752056}
   - {fileID: 551507780}
   - {fileID: 1550845499}
-  - {fileID: 4920356478267468953}

@@ -41,7 +41,12 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
 
     void Update()
     {
+        // DeadMario animator has no parameters (alive only turns false once its death event fires)
+        if (!alive || marioAnimator.parameterCount == 0) return;
+
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.linearVelocity.x));
+        // re-sync every frame: swapping animator controllers (SetupAnimator) resets parameters to defaults
+        marioAnimator.SetBool("onGround", onGroundState);
     }
 
     void FixedUpdate()
@@ -132,6 +137,10 @@ public class PlayerController : MonoBehaviour, IPowerupApplicable
     // OnDamagePlayer
     public void DamageMario()
     {
+        // Starman buff makes Mario immune to damage
+        BuffStateController buff = GetComponent<BuffStateController>();
+        if (buff != null && buff.isStarmanActive) return;
+
         GetComponent<MarioStateController>()
             .SetPowerup(PowerupType.Damage);
     }

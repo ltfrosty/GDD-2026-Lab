@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class MusicManager : Singleton<MusicManager>
+// no longer a Singleton: each scene has its own MusicManager (no DontDestroyOnLoad)
+public class MusicManager : MonoBehaviour
 {
     public AudioSource themeMusic;
 

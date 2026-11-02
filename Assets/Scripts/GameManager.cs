@@ -5,6 +5,10 @@ public class GameManager : MonoBehaviour
     public IntVariable gameScore;
     public GameConstants gameConstants;
 
+    // true only in the first level: the score SO keeps its value between scenes (and between
+    // play sessions when Reload Domain is disabled), so the first level starts it from 0
+    public bool resetScoreOnStart = false;
+
     [Header("Events this script raises")]
     public SimpleGameEvent onGameStart;
     public SimpleGameEvent onUpdateScore;
@@ -13,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = gameConstants.targetFrameRate;
         Time.timeScale = 1.0f;
+        if (resetScoreOnStart) gameScore.Value = 0;
         onGameStart.Raise();
         onUpdateScore.Raise();
     }
